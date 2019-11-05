@@ -4,14 +4,16 @@ module.exports = {
   entry: './client/index.js',
   output: {
     path: path.resolve(__dirname, 'build'),
-    publicPath: '/build/',
+    publicPath: 'http://localhost:8080',
     filename: 'bundle.js'
   },
   mode: process.env.NODE_ENV,
   devServer: {
-    contentBase: path.join(__dirname, './client/assets'),
-    publicPath: '/',
-    port: 3000
+    publicPath: "/",
+    hot: true,
+    proxy: {
+      '*': 'http://localhost:3000'
+    }
   },
   module: {
     rules: [
