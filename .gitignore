@@ -14,3 +14,6 @@ dist/
 
 # production build
 build/
+
+#.env file
+.env
