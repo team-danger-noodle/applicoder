@@ -65,7 +65,8 @@ module.exports = {
       '/Indeed': 'http://localhost:3000/',
       '/LinkedIn': 'http://localhost:3000/',
       '/GlassDoor': 'http://localhost:3000/',
-      '/LinkUp': 'http://localhost:3000/'
+      '/LinkUp': 'http://localhost:3000/',
+      '/favorites': 'http://localhost:3000/',
     }
   },
   mode: process.env.NODE_ENV,
