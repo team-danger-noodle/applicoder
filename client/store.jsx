@@ -41,6 +41,7 @@ export const StoreContextProvider = (props) => {
     keywordSearch: '',
     locationSearch: '',
     job_ID: null,
+    fetched: false
   })
 
   return (
