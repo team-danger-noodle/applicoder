@@ -4,16 +4,18 @@ const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
 const PORT = 3000;
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const graphqlHTTP = require('express-graphql');
+const schema = require('./schema');
 
-const userController = require('../model/userController')
+const userController = require('../model/userController');
 
-const mongoURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@applicoder-y9btr.mongodb.net/test?retryWrites=true&w=majority`
+const mongoURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@applicoder-y9btr.mongodb.net/test?retryWrites=true&w=majority`;
 
 mongoose.connect(mongoURI, { useUnifiedTopology: true, useNewUrlParser: true });
 mongoose.set('useCreateIndex', true);
 
-app.use(bodyParser.json()); 
+app.use(bodyParser.json());
 
 app.use('/build', express.static(path.join(__dirname, '../build')));
 
@@ -25,7 +27,7 @@ app.get('/', (req, res) => {
 //get request to signup page
 app.get('/signup', (req, res) => {
   //RENDER SIGNUP HTML PAGE res.render('FILE PATH')
-})
+});
 
 //signup user
 app.post('/signup', userController.createUser, (req, res) => {
@@ -34,14 +36,23 @@ app.post('/signup', userController.createUser, (req, res) => {
 
 //get favorites for user
 app.get('/favorites', userController.getFavorites, (req, res) => {
-  console.log(res.locals.results)
-  res.status(200).send(JSON.stringify(res.locals.results))
-})
+  console.log(res.locals.results);
+  res.status(200).send(JSON.stringify(res.locals.results));
+});
 
 //add a favorite to user
 app.post('/favorites', userController.addFavorite, (req, res) => {
   res.sendStatus(200);
-})
+});
+
+// query api
+app.use(
+  '/graphql',
+  graphqlHTTP({
+    schema,
+    graphiql: true
+  })
+);
 
 // global route handler
 app.use('*', (req, res) => {
