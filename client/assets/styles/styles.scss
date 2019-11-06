@@ -91,17 +91,17 @@ body,
 #filterContainer {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
   margin-top: 55px;
   height: 93%;
-  width: 20%;
+  width: 18%;
   border-style: solid;
   background-color: darkgray;
   border-radius: 5px;
 }
 #filters {
-  width: 95%;
+  width: 98%;
   height: 98%;
   background-color: blue;
 }
@@ -131,7 +131,6 @@ body,
   align-items: center;
   height: 35px;
   width: 35px;
-  color: none;
 }
 #star{
   margin: -7px auto;
@@ -142,4 +141,19 @@ body,
 #postDate {
   position: relative;
   left: -570px;
+}
+#filterOptions {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  text-align: center;
+  height: 60%;
+}
+#buttons {
+  position: relative;
+  left: 20px;
+  text-align: left;
+}
+#submit {
+  width: 80%
 }

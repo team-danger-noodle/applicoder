@@ -40,8 +40,9 @@ export const StoreContextProvider = (props) => {
     linkUpRes: [],
     keywordSearch: '',
     locationSearch: '',
+    radius: '',
     job_ID: null,
-    fetched: false
+    fetched: true
   })
 
   return (

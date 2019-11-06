@@ -47,21 +47,25 @@ const Homepage = () => {
     }
 
     //this could possibly be moved to another component
-    if(Store.job_ID) {
-      fetch('/favorites', {
-        method: 'POST',
-        headers: {
-          'Content-Type' : 'applocation/json'
-        },
-        body: JSON.stringify({
-          username: Store.user,
-          favorites: Store.job_ID
-        })
-      })
-      .then(res=> res.json())
-      .then(res=> console.log(res))
-      .catch(e=> console.log(e))
-    };
+    // if(Store.job_ID) {
+    //   fetch('/favorites', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type' : 'applocation/json'
+    //     },
+    //     body: JSON.stringify({
+    //       username: Store.user,
+    //       favorites: Store.job_ID
+    //     })
+    //   })
+    //   .then(res=> res.json())
+    //   .then(res=> console.log(res))
+    //   .catch(e=> console.log(e))
+    //   setStore({
+    //     ...Store,
+    //     job_ID: null
+    //   })
+    // };
 
 
   })
