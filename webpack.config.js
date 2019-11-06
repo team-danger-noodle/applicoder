@@ -61,7 +61,11 @@ module.exports = {
     publicPath: '/build',
     contentBase: path.join(__dirname, '/client'),
     proxy: {
-      '/': 'http://localhost:3000/'
+      '/': 'http://localhost:3000/',
+      '/Indeed': 'http://localhost:3000/',
+      '/LinkedIn': 'http://localhost:3000/',
+      '/GlassDoor': 'http://localhost:3000/',
+      '/LinkUp': 'http://localhost:3000/'
     }
   },
   mode: process.env.NODE_ENV,

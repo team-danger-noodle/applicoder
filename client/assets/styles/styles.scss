@@ -1,0 +1,145 @@
+html,
+body,
+#app, 
+#homepage {
+  height: 100%;
+  width: 100%;
+}
+#homepage {
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+}
+#content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 55px;
+  width: 80%;
+  height: 93.5%;
+}
+#searchResults {
+  width: 98%;
+  height: 98%;
+  overflow: scroll;
+  background-color: darkgray;
+}
+#routeHolder {
+  display: grid;
+  margin-top: 4px;
+  width: 98%;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 2px;
+  grid-row-gap: 0px;
+}
+#routeHolder a button {
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border: 1px black;
+}
+#resultHolder {
+  display: flex;
+  flex-direction: column;
+
+}
+#jobListing{
+  display: flex;
+  justify-content: space-evenly;
+  width: 97%;
+  background-color: darksalmon;
+  margin: 5px auto;
+  border-radius: 8px;
+}
+.listingDeets{
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 95%;
+  // background-color: darksalmon;
+  margin: 10px 10px;
+}
+#listingDeets, h3, p {
+  margin-left: 15px;
+}
+#compAndLoc {
+  // width: 75%;
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-between;
+}
+
+#logout, #navbarLogo  {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 60px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+#title{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#filterContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 55px;
+  height: 93%;
+  width: 20%;
+  border-style: solid;
+  background-color: darkgray;
+  border-radius: 5px;
+}
+#filters {
+  width: 95%;
+  height: 98%;
+  background-color: blue;
+}
+.logout {
+  width: 80px;
+}
+#OAuth {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 40%;
+  margin: 50px auto;
+  padding-top: 200px;
+}
+#navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 55px;
+}
+#favoriteButton {
+  position: relative;
+  right: -495px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 35px;
+  width: 35px;
+  color: none;
+}
+#star{
+  margin: -7px auto;
+  width: 35px;
+  height: 35px;
+  border-radius: 10px;
+}
+#postDate {
+  position: relative;
+  left: -570px;
+}
