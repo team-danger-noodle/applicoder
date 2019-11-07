@@ -1,9 +1,5 @@
 const router = require('express').Router();
-const path = require('path');
-const passport = require('passport')
-const FacebookStrategy = require('passport-facebook').Strategy;
-const GithubStrategy = require('passport-github').Strategy;
-const { facebook, github, linkedIn } = require("./secretKeys");
+const { github, linkedIn } = require("./secretKeys");
 
 //passport authentication
 //linkedin

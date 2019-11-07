@@ -14,7 +14,6 @@ const Login = () => {
   const github = () => {
     fetch("/auth/github", {
       method: 'GET',
-      // mode: 'no-cors',
     })
     .then(res =>res.json())
     .then(data => {

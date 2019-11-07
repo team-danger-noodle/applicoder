@@ -4,8 +4,8 @@ export const StoreContext = createContext(null);
 
 export const StoreContextProvider = (props) => {
   const [Store, setStore] = useState({
-    user: 'randy',
-    verified: true,
+    user: '',
+    verified: true, //will need to set to false when launching
     userFavs: [],
     linkedInRes: [],
     gitHubJobs: [],
@@ -44,7 +44,7 @@ export const StoreContextProvider = (props) => {
     radius: '',
     job_ID: null,
     pageLike: null,
-    fetched: true
+    fetched: true //will need to set to false upon launching to fetch upon initial load
   })
 
   return (
