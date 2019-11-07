@@ -5,14 +5,9 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const PORT = 3000;
-<<<<<<< HEAD
 const authRouter = require('./Routes/Authentication');
 const tokenAccess = require('./tokenAccess');
-=======
-const authRouter = require("./Routes/Authentication")
-const tokenAccess = require("./tokenAccess")
-const cookies = require('./CookiesAndVerification/cookies')
->>>>>>> a31f689d13de48266791eeabc4ae93009948b674
+const cookies = require('./CookiesAndVerification/cookies');
 const mongoose = require('mongoose');
 const graphqlHTTP = require('express-graphql');
 const schema = require('./schema');
@@ -37,25 +32,27 @@ app.get('/', cookies.checkCookies, (req, res) => {
 app.use('/auth', authRouter);
 
 //oauth callbacks
-<<<<<<< HEAD
-app.get('/github/callback', tokenAccess.githubRequestToken, (req, res) => {
-=======
-app.get("/github/callback", tokenAccess.githubRequestToken, cookies.createCookies, (req, res) => {
->>>>>>> a31f689d13de48266791eeabc4ae93009948b674
-  accessinfo = res.locals.login;
-  console.log(accessinfo);
-  res.redirect('/');
-});
+app.get(
+  '/github/callback',
+  tokenAccess.githubRequestToken,
+  cookies.createCookies,
+  (req, res) => {
+    accessinfo = res.locals.login;
+    console.log(accessinfo);
+    res.redirect('/');
+  }
+);
 
-<<<<<<< HEAD
-app.get('/linkedIn/callback', tokenAccess.linkedInRequestToken, (req, res) => {
-=======
-app.get("/linkedIn/callback", tokenAccess.linkedInRequestToken, cookies.createCookies, (req, res) => {
->>>>>>> a31f689d13de48266791eeabc4ae93009948b674
-  accessinfo = res.locals.login;
-  linkedInAccessToken = res.locals.accessToken;
-  res.redirect('/');
-});
+app.get(
+  '/linkedIn/callback',
+  tokenAccess.linkedInRequestToken,
+  cookies.createCookies,
+  (req, res) => {
+    accessinfo = res.locals.login;
+    linkedInAccessToken = res.locals.accessToken;
+    res.redirect('/');
+  }
+);
 
 //userinformation endpoint
 app.get('/getUserInfo', (req, res) => {
