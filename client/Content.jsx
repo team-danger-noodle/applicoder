@@ -1,8 +1,8 @@
 import React from 'react';
-import USAJobs from './USAJobs.jsx';
-import Indeed from './Indeed.jsx';
 import GitHub from './GitHub.jsx';
-import GlassDoor from './GlassDoor.jsx';
+import AuthenticJobs from './AuthenticJobs.jsx';
+import Codesmith from './Codesmith.jsx';
+import Favorites from './Favorites.jsx';
 import { Button } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
@@ -11,26 +11,6 @@ const Content = () => {
     <Router>
       <div id='content' className='bg-dark'>
         <div id='routeHolder'>
-          <Link to='/USAJobs'>
-            <Button
-              variant='secondary'
-              onClick={() => {
-                console.log('USAJobs');
-              }}
-            >
-              USAJobs
-            </Button>
-          </Link>
-          <Link to='/Indeed'>
-            <Button
-              variant='secondary'
-              onClick={() => {
-                console.log('Indeed');
-              }}
-            >
-              Indeed
-            </Button>
-          </Link>
           <Link to='/GitHub'>
             <Button
               variant='secondary'
@@ -41,31 +21,51 @@ const Content = () => {
               GitHub
             </Button>
           </Link>
-          <Link to='/GlassDoor'>
+          <Link to='/AuthenticJobs'>
             <Button
               variant='secondary'
               onClick={() => {
-                console.log('GlassDoor');
+                console.log('Authentic Jobs');
               }}
             >
-              GlassDoor
+              Authentic Jobs
+            </Button>
+          </Link>
+          <Link to='/Codesmith'>
+            <Button
+              variant='secondary'
+              onClick={() => {
+                console.log('Codesmith');
+              }}
+            >
+              Codesmith
+            </Button>
+          </Link>
+          <Link to='/Favorites'>
+            <Button
+              variant='secondary'
+              onClick={() => {
+                console.log('Favorites');
+              }}
+            >
+              Favorites
             </Button>
           </Link>
         </div>
         <div id='searchResults'>
           <div id='results' bg='dark'>
             <Switch>
-              <Route exact path='/USAJobs'>
-                <USAJobs />
-              </Route>
-              <Route path='/Indeed'>
-                <Indeed />
-              </Route>
-              <Route path='/GitHub'>
+              <Route exact path='/GitHub'>
                 <GitHub />
               </Route>
-              <Route path='/favorites'>
-                <GlassDoor />
+              <Route path='/AuthenticJobs'>
+                <AuthenticJobs />
+              </Route>
+              <Route path='/Codesmith'>
+                <Codesmith />
+              </Route>
+              <Route path='/Favorites'>
+                <Favorites />
               </Route>
             </Switch>
           </div>
