@@ -19,6 +19,7 @@ const GITHUB_JOBS_QUERY = gql`
 `;
 
 const GitHubJobs = () => {
+  const [Store, setStore] = useContext(StoreContext);
   const { loading, error, data } = useQuery(GITHUB_JOBS_QUERY);
 
   if (loading) return <h4>Loading...</h4>;
@@ -34,11 +35,11 @@ const GitHubJobs = () => {
         posted={result.created_at}
         id={result.id}
         url={result.company_url}
+        page={'Github'}
         key={result.id}
       ></SearchResult>
     );
   });
-
   return <div id='resultHolder'>{searchResults}</div>;
 };
 

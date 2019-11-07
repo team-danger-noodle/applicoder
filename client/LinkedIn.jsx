@@ -15,6 +15,7 @@ const LinkedIn = () => {
         posted={result.postDate}
         id={result.jobID}
         url={result.url}
+        page={'LinkedIn'}
         key={ind}
       ></SearchResult>
     );
