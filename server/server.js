@@ -3,9 +3,11 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const PORT = 3000;
 const authRouter = require("./Routes/Authentication")
 const tokenAccess = require("./tokenAccess")
+const cookies = require('./CookiesAndVerification/cookies')
 const mongoose = require('mongoose');
 const graphqlHTTP = require('express-graphql');
 const schema = require('./schema');
@@ -20,20 +22,22 @@ mongoose.set('useCreateIndex', true);
 let accessinfo = '';
 
 app.use(bodyParser.json());
+app.use(cookieParser());
+
 app.use('/build', express.static(path.join(__dirname, '../build')));
-app.get('/', (req, res) => {
+app.get('/', cookies.checkCookies, (req, res) => {
   res.status(200).sendFile(path.join(__dirname, '../index.html'));
 });
 app.use('/auth', authRouter);
 
 //oauth callbacks
-app.get("/github/callback", tokenAccess.githubRequestToken, (req, res) => {
+app.get("/github/callback", tokenAccess.githubRequestToken, cookies.createCookies, (req, res) => {
   accessinfo = res.locals.login;
   console.log(accessinfo)
   res.redirect('/')
 });
 
-app.get("/linkedIn/callback", tokenAccess.linkedInRequestToken, (req, res) => {
+app.get("/linkedIn/callback", tokenAccess.linkedInRequestToken, cookies.createCookies, (req, res) => {
   accessinfo = res.locals.login;
   res.redirect('/');
 });
@@ -68,7 +72,7 @@ app.use(
   '/graphql',
   graphqlHTTP({
     schema,
-    graphiql: true 
+    graphiql: true
   })
 );
 

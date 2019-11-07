@@ -1,30 +1,32 @@
 import React from 'react';
 import { Jumbotron, Image } from 'react-bootstrap';
 import { LinkedInLoginButton, GithubLoginButton } from 'react-social-login-buttons';
+import './assets/styles/normalize.css';
+import './assets/styles/styles.scss';
 
 const Login = () => {
   const linkedIn = () => {
     fetch("/auth/linkedIn")
-    .then((res) => res.json())
-    .then((data) => {
-      //react router redirect
-      window.location = data.redirect;
-    })
+      .then((res) => res.json())
+      .then((data) => {
+        //react router redirect
+        window.location = data.redirect;
+      })
   }
   const github = () => {
     fetch("/auth/github", {
       method: 'GET',
     })
-    .then(res =>res.json())
-    .then(data => {
-      console.log(data.redirect)
-      window.location = data.redirect;
-    });
+      .then(res => res.json())
+      .then(data => {
+        console.log(data.redirect)
+        window.location = data.redirect;
+      });
   }
 
   return (
     <>
-      <Jumbotron id = "OAuth">
+      <Jumbotron id="OAuth">
         <Image src="https://image.flaticon.com/icons/svg/52/52903.svg" id="loginIcon"></Image>
         <p id="OAuthIntro">Welcome to...</p>
         <h1>AppliCoder</h1>
@@ -33,10 +35,10 @@ const Login = () => {
           </p>
         <div id="loginButtons">
           <div className="login">
-            <GithubLoginButton onClick={github} preventActiveStyles={true} style={{width:'99.5%', height: '40px', fontSize: '17px'}} />
+            <GithubLoginButton onClick={github} preventActiveStyles={true} style={{ width: '99.5%', height: '40px', fontSize: '17px' }} />
           </div>
           <div className="login">
-            <LinkedInLoginButton onClick={linkedIn} preventActiveStyles={true} style={{width:'99.5%', height: '40px', fontSize: '17px'}}/>
+            <LinkedInLoginButton onClick={linkedIn} preventActiveStyles={true} style={{ width: '99.5%', height: '40px', fontSize: '17px' }} />
           </div>
         </div>
       </Jumbotron>
