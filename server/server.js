@@ -6,7 +6,6 @@ const bodyParser = require('body-parser');
 const PORT = 3000;
 const authRouter = require("./Routes/Authentication")
 const tokenAccess = require("./tokenAccess")
-const cors = require("cors");
 const mongoose = require('mongoose');
 const graphqlHTTP = require('express-graphql');
 const schema = require('./schema');

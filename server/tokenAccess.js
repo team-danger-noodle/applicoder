@@ -1,4 +1,4 @@
-const { facebook, github, linkedIn } = require("./Routes/secretKeys");
+const { github, linkedIn } = require("./Routes/secretKeys");
 const axios = require('axios')
 let tokenObj = {}
 tokenObj.githubRequestToken = (req, res, next) => {
