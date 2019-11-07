@@ -1,10 +1,13 @@
 const path = require('path');
 
 module.exports = {
-  entry: path.resolve(__dirname, 'client/index.js'),
+  entry: {
+    homePage: path.resolve(__dirname, 'client/index.js'),
+    loginPage: path.resolve(__dirname, 'client/login.js'),
+  },
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js'
+    filename: '[name].js'
   },
   devServer: {
     port: 8080,
@@ -12,6 +15,7 @@ module.exports = {
     contentBase: path.join(__dirname, '/client'),
     proxy: {
       '/': 'http://localhost:3000/',
+      '/login': 'http://localhost:3000/',
       '/Indeed': 'http://localhost:3000/',
       '/LinkedIn': 'http://localhost:3000/',
       '/GlassDoor': 'http://localhost:3000/',

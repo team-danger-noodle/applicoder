@@ -3,7 +3,6 @@ import { StoreContext } from './Store.jsx';
 
 
 const Login = () => {
-  const [Store, setStore] = useContext(StoreContext);
 
   return (
     <>
