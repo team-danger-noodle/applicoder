@@ -48,7 +48,7 @@ const Homepage = () => {
     // }
     fetch('/getUserInfo')
       .then(response => response.json())
-      .then(data => setStore({ user: data }))
+      .then(data => setStore({ ...Store, user: data }))
       .catch(console.error)
   }, [Store.fetched])
 
