@@ -2,7 +2,7 @@ import React from 'react';
 import GitHub from './GitHub.jsx';
 import AuthenticJobs from './AuthenticJobs.jsx';
 import Codesmith from './Codesmith.jsx';
-import Favorites from './LinkedIn.jsx';
+import Favorites from './Favorites.jsx';
 import { Button } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 

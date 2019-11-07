@@ -46,18 +46,17 @@ app.get('/getUserInfo', (req, res) => {
 });
 
 //get request to signup page
-app.get('/signup', (req, res) => {
-  //RENDER SIGNUP HTML PAGE res.render('FILE PATH')
+app.get('/login', (req, res) => {
+  res.status(200).sendFile(path.join(__dirname, '../login.html'));
 });
 
-//signup user
-app.post('/signup', userController.createUser, (req, res) => {
+//login user
+app.post('/login', userController.createUser, (req, res) => {
   res.status(200).redirect('/');
 });
 
 //get favorites for user
 app.get('/favorites', userController.getFavorites, (req, res) => {
-  console.log(res.locals.results);
   res.status(200).send(JSON.stringify(res.locals.results));
 });
 
@@ -76,7 +75,7 @@ app.use(
   '/graphql',
   graphqlHTTP({
     schema,
-    graphiql: true
+    graphiql: true 
   })
 );
 

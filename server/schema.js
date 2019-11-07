@@ -96,17 +96,6 @@ const AuthenticJobListingCompanyLocationType = new GraphQLObjectType({
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
-    // linkedInJobs: {
-    //   type: new GraphQLList(LinkedInJobType),
-    //   resolve(parent, args) {
-    //     return axios
-    //       .get(
-    //         'https://jobs.github.com/positions.json?full_time=true&location=los+angeles'
-    //       )
-    //       .then(res => res.data)
-    //       .catch(console.log('yo'));
-    //   }
-    // },
     gitHubJobs: {
       type: new GraphQLList(GitHubJobType),
       resolve(parent, args) {
@@ -114,8 +103,7 @@ const RootQuery = new GraphQLObjectType({
           .get(
             'https://jobs.github.com/positions.json?full_time=true&location=los+angeles'
           )
-          .then(res => res.data)
-          .catch(console.log('yo'));
+          .then(res => res.data);
       }
     },
     authenticJobs: {
@@ -125,8 +113,7 @@ const RootQuery = new GraphQLObjectType({
           .get(
             'https://authenticjobs.com/api/?api_key=eff30b30aac066b2ea5d6d6f1a07a19f&format=json&method=aj.jobs.search'
           )
-          .then(res => res.data)
-          .catch(console.log('yo'));
+          .then(res => res.data);
       }
     }
   }
