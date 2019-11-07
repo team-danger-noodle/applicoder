@@ -1,6 +1,7 @@
 # general
 .DS_Store
 secretKeys.js
+
 # dependencies
 node_modules/
 
