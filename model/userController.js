@@ -32,14 +32,14 @@ userController.addFavorite = (req, res, next) => {
         //if favorite is already in list, remove it
         if(result[0].favorites.length>=1){
             for(let i = 0; i < result[0].favorites.length; i++){
-                if(req.body.favorites[0].jobID === result[0].favorites[i].jobID){
+                if(req.body.favorites.jobID === result[0].favorites[i].jobID){
                     return User.updateOne( {username: req.body.username}, { $pullAll: { favorites: [result[0].favorites[i]]}}, (error, results) => {
-                                if (error) throw error
+                                if (error) throw error 
                                 else {
                                     return next();
-                                }
+                                } 
                             })
-                } else if (req.body.favorites[0].jobID !== result[0].favorites[i].jobID && i === result[0].favorites.length-1){
+                } else if (req.body.favorites.jobID !== result[0].favorites[i].jobID && i === result[0].favorites.length-1){
                     return User.updateOne({username: req.body.username}, { $push: { favorites: req.body.favorites }}, (error, results) => {
                                 if (error) throw error
                                 else {

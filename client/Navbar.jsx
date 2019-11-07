@@ -26,7 +26,7 @@ const Navigation = () => {
       </Navbar.Brand>
       <Navbar.Brand id="title"> AppliCoder . . .</Navbar.Brand>
       <Navbar.Brand id="logout">
-      <Button variant="outline-info" onClick={logout} className="logout">Logout</Button>
+        <Button variant="outline-info" onClick={logout} className="logout">Logout</Button>
       </Navbar.Brand>
     </Navbar>
   )

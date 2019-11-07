@@ -4,11 +4,12 @@ export const StoreContext = createContext(null);
 
 export const StoreContextProvider = (props) => {
   const [Store, setStore] = useState({
-    user: '',
-    verified: true,
+    user: 'randy',
+    verified: true, //will need to set to false when launching
     userFavs: [],
     linkedInRes: [],
-    indeedRes: [ {
+    gitHubJobs: [],
+    indeedRes: [ { 
       jobTitle: 'Full Stack Engineer',
       company: 'Tradelogic Corporation',
       location: 'Austin, TX',
@@ -40,8 +41,10 @@ export const StoreContextProvider = (props) => {
     linkUpRes: [],
     keywordSearch: '',
     locationSearch: '',
+    radius: '',
     job_ID: null,
-    fetched: true
+    pageLike: null,
+    fetched: true //will need to set to false upon launching to fetch upon initial load
   })
 
   return (

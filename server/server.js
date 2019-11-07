@@ -4,6 +4,8 @@ const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
 const PORT = 3000;
+const authRouter = require("./Routes/Authentication")
+const tokenAccess = require("./tokenAccess")
 const mongoose = require('mongoose');
 const graphqlHTTP = require('express-graphql');
 const schema = require('./schema');
@@ -15,14 +17,31 @@ const mongoURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@ap
 mongoose.connect(mongoURI, { useUnifiedTopology: true, useNewUrlParser: true });
 mongoose.set('useCreateIndex', true);
 
+let accessinfo = '';
+
 app.use(bodyParser.json());
-
 app.use('/build', express.static(path.join(__dirname, '../build')));
-
-// route to home page
 app.get('/', (req, res) => {
   res.status(200).sendFile(path.join(__dirname, '../index.html'));
 });
+app.use('/auth', authRouter);
+
+//oauth callbacks
+app.get("/github/callback", tokenAccess.githubRequestToken, (req, res) => {
+  accessinfo = res.locals.login;
+  console.log(accessinfo)
+  res.redirect('/')
+});
+
+app.get("/linkedIn/callback", tokenAccess.linkedInRequestToken, (req, res) => {
+  accessinfo = res.locals.login;
+  res.redirect('/');
+});
+
+//userinformation endpoint
+app.get('/getUserInfo', (req, res) => {
+  res.json(accessinfo);
+})
 
 //get request to signup page
 app.get('/login', (req, res) => {
@@ -41,7 +60,7 @@ app.get('/favorites', userController.getFavorites, (req, res) => {
 
 //add a favorite to user
 app.post('/favorites', userController.addFavorite, userController.getFavorites, (req, res) => {
-  res.sendStatus(200);
+  res.status(200).send(JSON.stringify(res.locals.results));
 });
 
 // query api
@@ -54,6 +73,7 @@ app.use(
 );
 
 // global route handler
+
 app.use('*', (req, res) => {
   res.status(404).send('Route not found');
 });

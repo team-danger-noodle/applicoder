@@ -1,18 +1,27 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { StoreContext } from './Store.jsx';
 import parse from 'html-react-parser';
+import { IoIosStarOutline, IoIosStar } from 'react-icons/io'
 
 const CenteredModal = props => {
   const [Store, setStore] = useContext(StoreContext);
-  // const [color, setColor] = React.useState(null);
+  const [icon, setIcon] = useState(true);
 
-  const addFav = id => {
+  const addFav = (id, page) => {
+    const job_ID = id;
+    const pageLike = page
     setStore({
       ...Store,
-      job_ID: id
-    });
-  };
+      job_ID,
+      pageLike
+    })
+    console.log(Store)
+  }
+  const changeIcon = () => {
+    const bool = icon
+    setIcon(!bool);
+  }
 
   return (
     <Modal
@@ -25,21 +34,19 @@ const CenteredModal = props => {
         <Modal.Title id='contained-modal-title-vcenter'>
           {props.title}
         </Modal.Title>
-        <Button
-          variant='outlined-secondary'
-          onClick={() => addFav(props.id)}
-          id='favoriteButton'
-        >
-          <img
-            id='star'
-            src='http://pluspng.com/img-png/png-star-black-and-white-star-black-and-white-shooting-star-clip-art-black-and-white-free-1979.png'
-          ></img>
+        <Button onClick={()=> {
+          addFav(props.id, props.page) 
+          changeIcon()
+        }}
+          variant='none'
+          id="favoriteButton">
+            { icon ? <IoIosStarOutline id="star"/> : <IoIosStar id="star"/>}
         </Button>
       </Modal.Header>
       <Modal.Body>
         <h4>{props.company}</h4>
         <h6>{props.location}</h6>
-        <p>{parse(`${props.summary}`)}</p>
+        <span>{parse(`${props.summary}`)}</span>
       </Modal.Body>
       <Modal.Footer>
         <p id='postDate'>Posted: {props.posted}</p>

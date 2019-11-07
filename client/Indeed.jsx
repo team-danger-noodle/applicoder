@@ -14,6 +14,7 @@ const Indeed = () => {
       posted={result.postDate}
       id={result.jobID}
       url={result.url}
+      page={'Indeed'}
       key={ind}
       ></SearchResult>
   })
