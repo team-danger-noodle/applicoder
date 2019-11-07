@@ -46,7 +46,10 @@ const Homepage = () => {
     //     fetched: true
     //   })
     // }
-
+    fetch('/getUserInfo')
+      .then(response => response.json())
+      .then(data => setStore({ user: data }))
+      .catch(console.error)
   }, [Store.fetched])
 
   useEffect(() => {

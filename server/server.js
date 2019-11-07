@@ -31,13 +31,13 @@ app.get('/', cookies.checkCookies, (req, res) => {
 app.use('/auth', authRouter);
 
 //oauth callbacks
-app.get("/github/callback", tokenAccess.githubRequestToken, cookies.createCookies, (req, res) => {
+app.get("/github/callback", tokenAccess.githubRequestToken, cookies.createCookies, userController.createUser, (req, res) => {
   accessinfo = res.locals.login;
   console.log(accessinfo)
   res.redirect('/')
 });
 
-app.get("/linkedIn/callback", tokenAccess.linkedInRequestToken, cookies.createCookies, (req, res) => {
+app.get("/linkedIn/callback", tokenAccess.linkedInRequestToken, cookies.createCookies, userController.createUser, (req, res) => {
   accessinfo = res.locals.login;
   res.redirect('/');
 });

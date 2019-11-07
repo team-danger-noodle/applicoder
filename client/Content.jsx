@@ -41,14 +41,14 @@ const Content = () => {
               GitHub
             </Button>
           </Link>
-          <Link to='/GlassDoor'>
+          <Link to='/Favorites'>
             <Button
               variant='secondary'
               onClick={() => {
                 console.log('GlassDoor');
               }}
             >
-              GlassDoor
+              Favorites
             </Button>
           </Link>
         </div>
@@ -63,9 +63,6 @@ const Content = () => {
               </Route>
               <Route path='/GitHub'>
                 <GitHub />
-              </Route>
-              <Route path='/favorites'>
-                <GlassDoor />
               </Route>
             </Switch>
           </div>
