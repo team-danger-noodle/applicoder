@@ -23,7 +23,35 @@ const GitHubJobType = new GraphQLObjectType({
   })
 });
 
-// root query
+// authentic job type
+const AuthenticJobType = new GraphQLObjectType({
+  name: 'AuthenticJob',
+  fields: () => ({
+    listings: {
+      type: AuthenticJobListType
+    }
+  })
+});
+
+// authentic job list type
+const AuthenticJobListType = new GraphQLObjectType({
+  name: 'AuthenticJobList',
+  fields: () => ({
+    listing: { type: new GraphQLList(AuthenticJobListingType) }
+  })
+});
+
+// authentic job listing type
+const AuthenticJobListingType = new GraphQLObjectType({
+  name: 'AuthenticJobListing',
+  fields: () => ({
+    id: { type: GraphQLString },
+    title: { type: GraphQLString },
+    description: { type: GraphQLString }
+  })
+});
+
+// root query type
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
@@ -34,18 +62,19 @@ const RootQuery = new GraphQLObjectType({
           .get(
             'https://jobs.github.com/positions.json?full_time=true&location=los+angeles'
           )
-          .then(res => res.data);
+          .then(res => res.data)
+          .catch(console.log('yo'));
       }
     },
-    gitHubJob: {
-      type: GitHubJobType,
-      args: {
-        id: { type: GraphQLString }
-      },
+    authenticJobs: {
+      type: AuthenticJobType,
       resolve(parent, args) {
         return axios
-          .get(`https://jobs.github.com/positions/${args.id}.json`)
-          .then(res => res.data);
+          .get(
+            'https://authenticjobs.com/api/?api_key=eff30b30aac066b2ea5d6d6f1a07a19f&format=json&method=aj.jobs.search'
+          )
+          .then(res => res.data)
+          .catch(console.log('yo'));
       }
     }
   }
