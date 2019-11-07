@@ -7,12 +7,12 @@ import Content from './Content.jsx'
 const Homepage = () => {
   const [Store, setStore] = useContext(StoreContext);
   useEffect(()=>{
-    if (!Store.fetched) {
-      let userFavs;
-      let linkedInRes;
-      let indeedRes;
-      let glassDoorRes;
-      let linkUpRes;
+    // if (!Store.fetched) {
+      // let userFavs;
+      // let linkedInRes;
+      // let indeedRes;
+      // let glassDoorRes;
+      // let linkUpRes;
       // on logging in fetching from APIs to get job search results
     // fetch(/LinkedIn)
     //.then(res=> res.json())
@@ -29,23 +29,33 @@ const Homepage = () => {
 
 
     //fetching for favs
-    fetch('/favorites')
-      .then(res=> res.json())
-      .then(res=> {
-        userFavs = res})
-      .catch(e=> console.log(e))
+    // fetch('/favorites')
+    //   .then(res=> res.json())
+    //   .then(res=> {
+    //     userFavs = res})
+    //   .catch(e=> console.log(e))
 
-      return setStore({
-        ...Store,
-        userFavs,
-        linkedInRes,
-        indeedRes,
-        glassDoorRes,
-        linkUpRes,
-        fetched: true
-      })
+    //   return setStore({
+    //     ...Store,
+    //     userFavs,
+    //     linkedInRes,
+    //     indeedRes,
+    //     glassDoorRes,
+    //     linkUpRes,
+    //     fetched: true
+    //   })
+    // }
+    if(Store.keywordSearch || Store.locationSearch || Store.radius) {
+      const keyword = Store.keywordSearch;
+      const location = Store.locationSearch;
+      const radius = Store.radius
+      const body = {
+        keyword,
+        location,
+        radius
+      }
+      console.log('the values made it', body)
     }
-
     //this could possibly be moved to another component
     // if(Store.job_ID) {
     //   fetch('/favorites', {
