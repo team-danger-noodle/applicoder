@@ -4,7 +4,7 @@ export const StoreContext = createContext(null);
 
 export const StoreContextProvider = props => {
   const [Store, setStore] = useState({
-    user: 'randy',
+    user: '',
     verified: true, //will need to set to false when launching
     userFavs: [],
     codesmithRes: [
