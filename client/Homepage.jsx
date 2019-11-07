@@ -6,14 +6,15 @@ import Content from './Content.jsx'
 
 const Homepage = () => {
   const [Store, setStore] = useContext(StoreContext);
-  useEffect(()=>{
+
+  useEffect(() => {
     // if (!Store.fetched) {
-      // let userFavs;
-      // let linkedInRes;
-      // let indeedRes;
-      // let glassDoorRes;
-      // let linkUpRes;
-      // on logging in fetching from APIs to get job search results
+    // let userFavs;
+    // let linkedInRes;
+    // let indeedRes;
+    // let glassDoorRes;
+    // let linkUpRes;
+    // on logging in fetching from APIs to get job search results
     // fetch(/LinkedIn)
     //.then(res=> res.json())
     //.then(res=> linkedInRes = res)
@@ -45,9 +46,10 @@ const Homepage = () => {
     //     fetched: true
     //   })
     // }
+
   }, [Store.fetched])
 
-  useEffect(()=> {
+  useEffect(() => {
     if (Store.keywordSearch || Store.locationSearch || Store.radius) {
       const keyword = Store.keywordSearch;
       const location = Store.locationSearch;
@@ -59,14 +61,14 @@ const Homepage = () => {
       }
       console.log('the values made it', body)
     }
-  },[Store.keywordSearch, Store.locationSearch, Store.radius])
+  }, [Store.keywordSearch, Store.locationSearch, Store.radius])
 
   useEffect(() => {
-    if(Store.job_ID && Store.pageLike) {
+    if (Store.job_ID && Store.pageLike) {
       const pageLike = Store.pageLike;
       let userFavs;
       let favorites;
-      if(pageLike === 'Indeed') {
+      if (pageLike === 'Indeed') {
         for (let post of Store.indeedRes) {
           if (post.jobID === Store.job_ID) {
             post.page = pageLike;
@@ -78,7 +80,7 @@ const Homepage = () => {
           if (post.id === Store.job_ID) {
             post.page = pageLike;
             favorites = post;
-          }             
+          }
         }
       } else if (pageLike === 'LinkedIn') {
         for (let post of Store.linkedInRes) {
@@ -99,18 +101,19 @@ const Homepage = () => {
       fetch('/favorites', {
         method: 'POST',
         headers: {
-          'Content-Type' : 'application/json'
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           username: Store.user,
           favorites: favorites
         })
       })
-      .then(res=> res.json())
-      .then(res=> {
-        console.log(res)
-        userFavs = res})
-      .catch(e=> console.log(e)) 
+        .then(res => res.json())
+        .then(res => {
+          console.log(res)
+          userFavs = res
+        })
+        .catch(e => console.log(e))
 
       setStore({
         ...Store,
@@ -120,13 +123,13 @@ const Homepage = () => {
       })
     }
   }, [Store.job_ID])
-    // this could possibly be moved to another component
+  // this could possibly be moved to another component
 
   return (
     <div id="homepage" className="bg-dark">
-      <Navbar/>
-      <Filters/>
-      <Content/>
+      <Navbar />
+      <Filters />
+      <Content />
     </div>
   )
 }

@@ -3,8 +3,7 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { StoreContextProvider } from './Store.jsx';
 import LandingPage from './LandingPage.jsx';
-import './assets/styles/normalize.css';
-import './assets/styles/styles.scss';
+
 
 const client = new ApolloClient({
   uri: '/graphql'
