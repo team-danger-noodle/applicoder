@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   entry: {
     homePage: path.resolve(__dirname, 'client/index.js'),
-    loginPage: path.resolve(__dirname, 'client/login.js'),
+    loginPage: path.resolve(__dirname, 'client/login.js')
   },
   output: {
     path: path.resolve(__dirname, 'build'),
