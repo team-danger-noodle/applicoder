@@ -35,7 +35,7 @@ const GitHubJobs = () => {
         posted={result.created_at}
         id={result.id}
         url={result.company_url}
-        page={'Github'}
+        page={'GitHub'}
         key={result.id}
       ></SearchResult>
     );

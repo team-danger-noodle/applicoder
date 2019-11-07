@@ -47,7 +47,48 @@ const AuthenticJobListingType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLString },
     title: { type: GraphQLString },
-    description: { type: GraphQLString }
+    description: { type: GraphQLString },
+    howto_apply: { type: GraphQLString },
+    post_date: { type: GraphQLString },
+    category: { type: AuthenticJobListingCategoryType },
+    type: { type: AuthenticJobListingTypeType },
+    company: { type: AuthenticJobListingCompanyType },
+    apply_url: { type: GraphQLString },
+    url: { type: GraphQLString }
+  })
+});
+
+// authentic job listing category type
+const AuthenticJobListingCategoryType = new GraphQLObjectType({
+  name: 'AuthenticJobListingCategory',
+  fields: () => ({
+    name: { type: GraphQLString }
+  })
+});
+
+// authentic job listing type type
+const AuthenticJobListingTypeType = new GraphQLObjectType({
+  name: 'AuthenticJobListingType',
+  fields: () => ({
+    name: { type: GraphQLString }
+  })
+});
+
+// authentic job listing company type
+const AuthenticJobListingCompanyType = new GraphQLObjectType({
+  name: 'AuthenticJobListingCompany',
+  fields: () => ({
+    name: { type: GraphQLString },
+    url: { type: GraphQLString },
+    location: { type: AuthenticJobListingCompanyLocationType }
+  })
+});
+
+// authentic job listing company location type
+const AuthenticJobListingCompanyLocationType = new GraphQLObjectType({
+  name: 'AuthenticJobListingCompanyLocation',
+  fields: () => ({
+    name: { type: GraphQLString }
   })
 });
 
@@ -55,6 +96,17 @@ const AuthenticJobListingType = new GraphQLObjectType({
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
+    // linkedInJobs: {
+    //   type: new GraphQLList(LinkedInJobType),
+    //   resolve(parent, args) {
+    //     return axios
+    //       .get(
+    //         'https://jobs.github.com/positions.json?full_time=true&location=los+angeles'
+    //       )
+    //       .then(res => res.data)
+    //       .catch(console.log('yo'));
+    //   }
+    // },
     gitHubJobs: {
       type: new GraphQLList(GitHubJobType),
       resolve(parent, args) {

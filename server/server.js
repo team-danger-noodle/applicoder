@@ -4,8 +4,8 @@ const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
 const PORT = 3000;
-const authRouter = require("./Routes/Authentication")
-const tokenAccess = require("./tokenAccess")
+const authRouter = require('./Routes/Authentication');
+const tokenAccess = require('./tokenAccess');
 const mongoose = require('mongoose');
 const graphqlHTTP = require('express-graphql');
 const schema = require('./schema');
@@ -18,6 +18,7 @@ mongoose.connect(mongoURI, { useUnifiedTopology: true, useNewUrlParser: true });
 mongoose.set('useCreateIndex', true);
 
 let accessinfo = '';
+let linkedInAccessToken = '';
 
 app.use(bodyParser.json());
 app.use('/build', express.static(path.join(__dirname, '../build')));
@@ -27,21 +28,22 @@ app.get('/', (req, res) => {
 app.use('/auth', authRouter);
 
 //oauth callbacks
-app.get("/github/callback", tokenAccess.githubRequestToken, (req, res) => {
+app.get('/github/callback', tokenAccess.githubRequestToken, (req, res) => {
   accessinfo = res.locals.login;
-  console.log(accessinfo)
-  res.redirect('/')
+  console.log(accessinfo);
+  res.redirect('/');
 });
 
-app.get("/linkedIn/callback", tokenAccess.linkedInRequestToken, (req, res) => {
+app.get('/linkedIn/callback', tokenAccess.linkedInRequestToken, (req, res) => {
   accessinfo = res.locals.login;
+  linkedInAccessToken = res.locals.accessToken;
   res.redirect('/');
 });
 
 //userinformation endpoint
 app.get('/getUserInfo', (req, res) => {
   res.json(accessinfo);
-})
+});
 
 //get request to signup page
 app.get('/signup', (req, res) => {
@@ -60,9 +62,14 @@ app.get('/favorites', userController.getFavorites, (req, res) => {
 });
 
 //add a favorite to user
-app.post('/favorites', userController.addFavorite, userController.getFavorites, (req, res) => {
-  res.status(200).send(JSON.stringify(res.locals.results));
-});
+app.post(
+  '/favorites',
+  userController.addFavorite,
+  userController.getFavorites,
+  (req, res) => {
+    res.status(200).send(JSON.stringify(res.locals.results));
+  }
+);
 
 // query api
 app.use(
