@@ -117,23 +117,24 @@ body,
   height: 55px;
 }
 #favoriteButton {
-  position: relative;
-  right: -340px;
+  position: absolute;
   display: flex;
   flex-direction: column;
+  right: 8%;
+  height: 50px;
+  width: 50px;
+  padding: 0;
   align-items: center;
-  height: 35px;
-  width: 35px;
 }
 #star{
-  margin: -7px auto;
-  width: 35px;
-  height: 35px;
-  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+  align-self: center;
+  margin: 0 auto;
 }
 #postDate {
-  position: relative;
-  left: -370px;
+  position: absolute;
+  left: 20px;
 }
 #filterOptions {
   display: flex;
