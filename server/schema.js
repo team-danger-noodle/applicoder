@@ -23,6 +23,19 @@ const GitHubJobType = new GraphQLObjectType({
   })
 });
 
+const USAJobType = new GraphQLObjectType({
+  name: 'USAJob',
+  fields: () => ({
+    PositionID: { type: GraphQLString },
+    DepartmentName: { type: GraphQLString },
+    PositionURI: { type: GraphQLString },
+    LocationName: { type: GraphQLString },
+    PositionTitle: { type: GraphQLString },
+    JobSummary: { type: GraphQLString },
+    ApplyURI: { type: GraphQLString },
+  })
+})
+
 // root query
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',

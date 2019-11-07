@@ -1,5 +1,5 @@
 import React from 'react';
-import LinkedIn from './LinkedIn.jsx';
+import USAJobs from './USAJobs.jsx';
 import Indeed from './Indeed.jsx';
 import GitHub from './GitHub.jsx';
 import GlassDoor from './GlassDoor.jsx';
@@ -11,14 +11,14 @@ const Content = () => {
     <Router>
       <div id='content' className='bg-dark'>
         <div id='routeHolder'>
-          <Link to='/LinkedIn'>
+          <Link to='/USAJobs'>
             <Button
               variant='secondary'
               onClick={() => {
-                console.log('LinkedIn');
+                console.log('USAJobs');
               }}
             >
-              LinkedIn
+              USAJobs
             </Button>
           </Link>
           <Link to='/Indeed'>
@@ -55,8 +55,8 @@ const Content = () => {
         <div id='searchResults'>
           <div id='results' bg='dark'>
             <Switch>
-              <Route exact path='/LinkedIn'>
-                <LinkedIn />
+              <Route exact path='/USAJobs'>
+                <USAJobs />
               </Route>
               <Route path='/Indeed'>
                 <Indeed />
@@ -64,7 +64,7 @@ const Content = () => {
               <Route path='/GitHub'>
                 <GitHub />
               </Route>
-              <Route path='/GlassDoor'>
+              <Route path='/favorites'>
                 <GlassDoor />
               </Route>
             </Switch>

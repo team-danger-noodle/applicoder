@@ -4,12 +4,12 @@ export const StoreContext = createContext(null);
 
 export const StoreContextProvider = (props) => {
   const [Store, setStore] = useState({
-    user: '',
+    user: 'randy',
     verified: true, //will need to set to false when launching
     userFavs: [],
     linkedInRes: [],
     gitHubJobs: [],
-    indeedRes: [ {
+    indeedRes: [ { 
       jobTitle: 'Full Stack Engineer',
       company: 'Tradelogic Corporation',
       location: 'Austin, TX',
