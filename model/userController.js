@@ -8,22 +8,20 @@ userController.getAllUsers = next => {
 
 //creates user
 userController.createUser = (req, res, next) => {
-  User.find({ username: req.body.username }, (error, result) => {
-    if (error) throw error;
-    if (!result[0]) {
-      User.create(
-        { username: req.body.username, favorites: req.body.favorites },
-        (error, user) => {
-          if (error) {
-            res.redirect('/login', { error });
-          } else {
-            res.locals.id = user._id;
-            return next();
-          }
+    console.log(res.locals.login)
+    User.find({ username: res.locals.login }, (error, result) => {
+        if (error) throw error;
+        if (!result[0]) {
+            User.create({ username: res.locals.login }, (error, user) => {
+                if (error) {
+                    res.redirect('/login', { error });
+                } else {
+                    return next();
+                }
+            });
         }
-      );
-    }
-  });
+    })
+    return next();
 };
 
 //adds favorite
