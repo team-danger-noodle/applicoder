@@ -1,0 +1,200 @@
+html,
+body,
+#app,
+#landingPage,
+#homepage {
+  height: 100%;
+  width: 100%;
+}
+#homepage {
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+}
+#content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 55px;
+  width: 80%;
+  height: 93.5%;
+}
+#searchResults {
+  width: 98%;
+  height: 98%;
+  overflow: scroll;
+  background-color: darkgray;
+}
+#routeHolder {
+  display: grid;
+  margin-top: 4px;
+  width: 98%;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 2px;
+  grid-row-gap: 0px;
+}
+#routeHolder a button {
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border: 1px black;
+}
+#resultHolder {
+  display: flex;
+  flex-direction: column;
+
+}
+#jobListing{
+  display: flex;
+  justify-content: space-evenly;
+  width: 97%;
+  background-color: darksalmon;
+  margin: 5px auto;
+  border-radius: 8px;
+}
+.listingDeets{
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 95%;
+  // background-color: darksalmon;
+  margin: 10px 10px;
+}
+#listingDeets, h3, p {
+  margin-left: 15px;
+}
+#compAndLoc {
+  // width: 75%;
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-between;
+}
+
+#logout, #navbarLogo  {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 60px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+#title{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#filterContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 55px;
+  height: 93%;
+  width: 18%;
+  border-style: solid;
+  background-color: darkgray;
+  border-radius: 5px;
+}
+#filters {
+  width: 98%;
+  height: 98%;
+  background-color: blue;
+}
+.logout {
+  width: 80px;
+}
+#navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 55px;
+}
+#favoriteButton {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  right: 8%;
+  height: 50px;
+  width: 50px;
+  padding: 0;
+  align-items: center;
+}
+#star{
+  width: 40px;
+  height: 40px;
+  align-self: center;
+  margin: 0 auto;
+}
+#postDate {
+  position: absolute;
+  left: 20px;
+}
+#filterOptions {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  text-align: center;
+  height: 60%;
+}
+#buttons {
+  position: relative;
+  left: 20px;
+  text-align: left;
+}
+#submit {
+  width: 80%
+}
+.login {
+  width: 49.99%;
+  display: flex;
+  border: none;
+  border-radius: 5px;
+}
+.loginBut {
+  font-size: 18px;
+  width: 99%;
+}
+#loginButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 auto;
+  align-self: center;
+}
+#landingPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#OAuth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  width: 35%;
+  height: 70%;
+  margin: 0px auto;
+  padding-top: 100px;
+}
+#OAuthIntro {
+  margin-top: 20px;
+  margin-bottom: -15px;
+}
+#loginIcon {
+  width: 170px;
+  height: 170px;
+  align-self: center;
+  margin-top: -30px;
+}
+.searchRad {
+  width: 98%;
+}

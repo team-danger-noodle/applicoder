@@ -1,14 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from '@apollo/react-hooks';
+import { StoreContextProvider } from './Store.jsx';
+import LandingPage from './LandingPage.jsx';
+import './assets/styles/normalize.css';
+import './assets/styles/styles.scss';
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {};
-  }
+const client = new ApolloClient({
+  uri: '/graphql'
+});
 
-  render() {
-    return <h1>AppliCoder</h1>;
-  }
-}
+const App = () => {
+  return (
+    <ApolloProvider client={client}>
+      <StoreContextProvider>
+        <LandingPage />
+      </StoreContextProvider>
+    </ApolloProvider>
+  );
+};
 
 export default App;

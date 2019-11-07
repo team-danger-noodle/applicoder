@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -6,6 +7,16 @@ const PORT = 3000;
 const authRouter = require("./Routes/Authentication")
 const tokenAccess = require("./tokenAccess")
 const cors = require("cors");
+const mongoose = require('mongoose');
+const graphqlHTTP = require('express-graphql');
+const schema = require('./schema');
+
+const userController = require('../model/userController');
+
+const mongoURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@applicoder-y9btr.mongodb.net/test?retryWrites=true&w=majority`;
+
+mongoose.connect(mongoURI, { useUnifiedTopology: true, useNewUrlParser: true });
+mongoose.set('useCreateIndex', true);
 
 let accessinfo = '';
 
@@ -23,7 +34,6 @@ app.get("/github/callback", tokenAccess.githubRequestToken, (req, res) => {
   res.redirect('/')
 });
 
-
 app.get("/linkedIn/callback", tokenAccess.linkedInRequestToken, (req, res) => {
   accessinfo = res.locals.login;
   res.redirect('/');
@@ -33,6 +43,37 @@ app.get("/linkedIn/callback", tokenAccess.linkedInRequestToken, (req, res) => {
 app.get('/getUserInfo', (req, res) => {
   res.json(accessinfo);
 })
+
+//get request to signup page
+app.get('/signup', (req, res) => {
+  //RENDER SIGNUP HTML PAGE res.render('FILE PATH')
+});
+
+//signup user
+app.post('/signup', userController.createUser, (req, res) => {
+  res.status(200).redirect('/');
+});
+
+//get favorites for user
+app.get('/favorites', userController.getFavorites, (req, res) => {
+  console.log(res.locals.results);
+  res.status(200).send(JSON.stringify(res.locals.results));
+});
+
+//add a favorite to user
+app.post('/favorites', userController.addFavorite, userController.getFavorites, (req, res) => {
+  res.status(200).send(JSON.stringify(res.locals.results));
+});
+
+// query api
+app.use(
+  '/graphql',
+  graphqlHTTP({
+    schema,
+    graphiql: true
+  })
+);
+
 // global route handler
 
 app.use('*', (req, res) => {

@@ -14,3 +14,9 @@ dist/
 
 # production build
 build/
+
+#.env file
+.env
+
+# package-lock
+package-lock.json
