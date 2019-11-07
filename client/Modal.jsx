@@ -8,11 +8,13 @@ const CenteredModal = props => {
   const [Store, setStore] = useContext(StoreContext);
   const [icon, setIcon] = useState(true);
 
-  const addFav = (id) => {
+  const addFav = (id, page) => {
     const job_ID = id;
+    const pageLike = page
     setStore({
       ...Store,
-      job_ID
+      job_ID,
+      pageLike
     })
     console.log(Store)
   }
@@ -33,7 +35,7 @@ const CenteredModal = props => {
           {props.title}
         </Modal.Title>
         <Button onClick={()=> {
-          addFav(props.id) 
+          addFav(props.id, props.page) 
           changeIcon()
         }}
           variant='none'
@@ -44,7 +46,7 @@ const CenteredModal = props => {
       <Modal.Body>
         <h4>{props.company}</h4>
         <h6>{props.location}</h6>
-        <p>{parse(`${props.summary}`)}</p>
+        <span>{parse(`${props.summary}`)}</span>
       </Modal.Body>
       <Modal.Footer>
         <p id='postDate'>Posted: {props.posted}</p>

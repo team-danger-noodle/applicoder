@@ -14,6 +14,7 @@ const GlassDoor = () => {
       posted={result.postDate}
       id={result.jobID}
       url={result.url}
+      page={'GlassDoor'}
       key={ind}
       ></SearchResult>
     })

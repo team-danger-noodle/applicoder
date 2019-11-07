@@ -21,7 +21,6 @@ const Filters = () => {
     console.log(radius)
   }
   const filter = (e) => {
-    e.preventDefault()
     console.log('is this working', keywordSearch, locationSearch, radius)
     setStore({
       ...Store,
@@ -48,8 +47,8 @@ const Filters = () => {
         </Form.Group>
         <fieldset>
         <Form.Group as={Row} id="buttons" onChange={(e)=> distance(e)}>
-          <Form.Label as="legend" sm={2} >Search Radius (miles)</Form.Label>
-          <Col sm={10}>
+          <Form.Label as="legend" md={2} className="searchRad" >Search Radius (miles)</Form.Label>
+          <Col md={12}>
             <Form.Check
               type="radio"
               label="25 miles"

@@ -20,7 +20,7 @@ const SearchResult = props => {
           <Card.Header as='h4'>{props.title}</Card.Header>
           <Card.Body>
             <Card.Title className='compAndLoc'>
-              {props.company}, {props.location}
+              {props.company} - {props.location}
             </Card.Title>
             {/* <Card.Text>{props.summary}</Card.Text> */}
           </Card.Body>
@@ -38,6 +38,7 @@ const SearchResult = props => {
         posted={props.posted}
         summary={props.summary}
         url={props.url}
+        page={props.page}
         id={props.id}
       />
     </>

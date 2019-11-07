@@ -41,8 +41,8 @@ app.get('/favorites', userController.getFavorites, (req, res) => {
 });
 
 //add a favorite to user
-app.post('/favorites', userController.addFavorite, (req, res) => {
-  res.sendStatus(200);
+app.post('/favorites', userController.addFavorite, userController.getFavorites, (req, res) => {
+  res.status(200).send(JSON.stringify(res.locals.results));
 });
 
 // query api
