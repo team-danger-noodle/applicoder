@@ -5,21 +5,22 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const PORT = 3000;
-const authRouter = require("./Routes/Authentication")
-const tokenAccess = require("./tokenAccess")
-const cookies = require('./CookiesAndVerification/cookies')
+const authRouter = require('./Routes/Authentication');
+const tokenAccess = require('./tokenAccess');
+const cookies = require('./CookiesAndVerification/cookies');
 const mongoose = require('mongoose');
 const graphqlHTTP = require('express-graphql');
 const schema = require('./schema');
 
 const userController = require('../model/userController');
 
-const mongoURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@applicoder-y9btr.mongodb.net/test?retryWrites=true&w=majority`;
+const mongoURI = `mongodb+srv://jan:jan@applicoder-y9btr.mongodb.net/test?retryWrites=true&w=majority`;
 
 mongoose.connect(mongoURI, { useUnifiedTopology: true, useNewUrlParser: true });
 mongoose.set('useCreateIndex', true);
 
 let accessinfo = '';
+let linkedInAccessToken = '';
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -31,21 +32,33 @@ app.get('/', cookies.checkCookies, (req, res) => {
 app.use('/auth', authRouter);
 
 //oauth callbacks
-app.get("/github/callback", tokenAccess.githubRequestToken, cookies.createCookies, userController.createUser, (req, res) => {
-  accessinfo = res.locals.login;
-  console.log(accessinfo)
-  res.redirect('/')
-});
+app.get(
+  '/github/callback',
+  tokenAccess.githubRequestToken,
+  cookies.createCookies,
+  userController.createUser,
+  (req, res) => {
+    accessinfo = res.locals.login;
+    console.log(accessinfo);
+    res.redirect('/');
+  }
+);
 
-app.get("/linkedIn/callback", tokenAccess.linkedInRequestToken, cookies.createCookies, userController.createUser, (req, res) => {
-  accessinfo = res.locals.login;
-  res.redirect('/');
-});
+app.get(
+  '/linkedIn/callback',
+  tokenAccess.linkedInRequestToken,
+  cookies.createCookies,
+  userController.createUser,
+  (req, res) => {
+    accessinfo = res.locals.login;
+    res.redirect('/');
+  }
+);
 
 //userinformation endpoint
 app.get('/getUserInfo', (req, res) => {
   res.json(accessinfo);
-})
+});
 
 //get request to signup page
 app.get('/login', (req, res) => {
@@ -63,9 +76,14 @@ app.post('/allfavorites', userController.getFavorites, (req, res) => {
 });
 
 //add a favorite to user
-app.post('/favorites', userController.addFavorite, userController.getFavorites, (req, res) => {
-  res.status(200).send(JSON.stringify(res.locals.results));
-});
+app.post(
+  '/favorites',
+  userController.addFavorite,
+  userController.getFavorites,
+  (req, res) => {
+    res.status(200).send(JSON.stringify(res.locals.results));
+  }
+);
 
 // query api
 app.use(
@@ -77,7 +95,6 @@ app.use(
 );
 
 // global route handler
-
 app.use('*', (req, res) => {
   res.status(404).send('Route not found');
 });
