@@ -59,7 +59,7 @@ app.post('/login', userController.createUser, (req, res) => {
 });
 
 //get favorites for user
-app.get('/favorites', userController.getFavorites, (req, res) => {
+app.post('/allfavorites', userController.getFavorites, (req, res) => {
   res.status(200).send(JSON.stringify(res.locals.results));
 });
 

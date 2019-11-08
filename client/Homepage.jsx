@@ -8,39 +8,48 @@ const Homepage = () => {
   const [Store, setStore] = useContext(StoreContext);
 
   useEffect(() => {
-    if (!Store.fetched) {
-      let userFavs;
-      let user;
-      fetch('/getUserInfo')
-      .then(response => response.json())
-      .then(data => {
-        user = data;
-        setStore({...Store, user})
-      })
-      // .then(data => setStore({ ...Store, user: data }))
-      .catch(console.error)
+    // if (!Store.fetched) {
+    // let userFavs;
+    // let linkedInRes;
+    // let indeedRes;
+    // let glassDoorRes;
+    // let linkUpRes;
+    // on logging in fetching from APIs to get job search results
+    // fetch(/LinkedIn)
+    //.then(res=> res.json())
+    //.then(res=> linkedInRes = res)
+    // fetch(/Indeed)
+    //.then(res=> res.json())
+    //.then(res=> indeedRes = res)
+    // fetch(/LinkUp)
+    //.then(res=> res.json())
+    //.then(res=> linkUpRes = res)
+    // fetch(/GlassDoor)
+    //.then(res=> res.json())
+    //.then(res=> glassDoorRes = res)
+
 
     //fetching for favs
-      fetch('/favorites', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({username: user})
-      })
-      .then(res=> res.json())
-      .then(res=> {
-        userFavs = res
-        setStore({...Store, userFavs, fetched: true})
-      })
-      .catch(e=> console.log(e))
+    // fetch('/favorites')
+    //   .then(res=> res.json())
+    //   .then(res=> {
+    //     userFavs = res})
+    //   .catch(e=> console.log(e))
 
-      setStore({
-        ...Store,
-        userFavs,
-        fetched: true
-      })
-    }  
+    //   return setStore({
+    //     ...Store,
+    //     userFavs,
+    //     linkedInRes,
+    //     indeedRes,
+    //     glassDoorRes,
+    //     linkUpRes,
+    //     fetched: true
+    //   })
+    // }
+    fetch('/getUserInfo')
+      .then(response => response.json())
+      .then(data => setStore({ ...Store, user: data }))
+      .catch(console.error)
   }, [])
 
   useEffect(() => {
@@ -62,29 +71,36 @@ const Homepage = () => {
       const pageLike = Store.pageLike;
       let userFavs;
       let favorites;
-      if (pageLike === 'Codesmith') {
-        for (let post of Store.codesmithRes) {
+      if (pageLike === 'Indeed') {
+        for (let post of Store.indeedRes) {
           if (post.jobID === Store.job_ID) {
             post.page = pageLike;
             favorites = post;
           }
         }
-      } else if (pageLike === 'GitHub') {
+      } else if (pageLike === 'Github') {
         for (let post of Store.gitHubJobs) {
-          if (post.key === Store.job_ID) {
+          if (post.id === Store.job_ID) {
             post.page = pageLike;
             favorites = post;
           }
         }
-      } else if (pageLike === 'AuthenticJobs') {
-        for (let post of Store.authenticJobs) {
-          if (post.key === Store.job_ID) {
+      } else if (pageLike === 'LinkedIn') {
+        for (let post of Store.linkedInRes) {
+          if (post.jobID === Store.job_ID) {
             post.page = pageLike;
             favorites = post;
           }
         }
-      } 
-
+      } else if (pageLike === 'GlassDoor') {
+        for (let post of Store.glassDoorRes) {
+          if (post.jobID === Store.job_ID) {
+            post.page = pageLike;
+            favorites = post;
+          }
+        }
+      }
+      console.log('body items', Store.user, favorites)
       fetch('/favorites', {
         method: 'POST',
         headers: {
@@ -92,7 +108,7 @@ const Homepage = () => {
         },
         body: JSON.stringify({
           username: Store.user,
-          favorites
+          favorites: favorites
         })
       })
         .then(res => res.json())
@@ -104,7 +120,9 @@ const Homepage = () => {
 
       setStore({
         ...Store,
-        userFavs
+        job_ID: null,
+        userFavs,
+        pageLike: null
       })
     }
   }, [Store.job_ID])
