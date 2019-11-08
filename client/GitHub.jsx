@@ -35,11 +35,18 @@ const GitHubJobs = () => {
         posted={result.created_at}
         id={result.id}
         url={result.company_url}
-        page={'Github'}
+        page={'GitHub'}
         key={result.id}
       ></SearchResult>
     );
   });
+  if (!Store.gitHubUpdate) {
+    setStore({
+      ...Store,
+      gitHubJobs: searchResults,
+      gitHubUpdate: true
+    })
+  }
   return <div id='resultHolder'>{searchResults}</div>;
 };
 

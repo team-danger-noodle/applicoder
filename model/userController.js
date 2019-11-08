@@ -2,7 +2,7 @@ const User = require('./userModel');
 
 const userController = {};
 
-userController.getAllUsers = (next) => {
+userController.getAllUsers = next => {
     User.find({}, next);
 };
 
@@ -27,37 +27,51 @@ userController.createUser = (req, res, next) => {
 //adds favorite
 userController.addFavorite = (req, res, next) => {
     User.find({ username: req.body.username }, (error, result) => {
-        if (error) throw error
+        if (error) throw error;
         //if favorite is already in list, remove it
         if (result[0].favorites.length >= 1) {
             for (let i = 0; i < result[0].favorites.length; i++) {
                 if (req.body.favorites.jobID === result[0].favorites[i].jobID) {
-                    return User.updateOne({ username: req.body.username }, { $pullAll: { favorites: [result[0].favorites[i]] } }, (error, results) => {
-                        if (error) throw error
-                        else {
-                            return next();
+                    return User.updateOne(
+                        { username: req.body.username },
+                        { $pullAll: { favorites: [result[0].favorites[i]] } },
+                        (error, results) => {
+                            if (error) throw error;
+                            else {
+                                return next();
+                            }
                         }
-                    })
-                } else if (req.body.favorites.jobID !== result[0].favorites[i].jobID && i === result[0].favorites.length - 1) {
-                    return User.updateOne({ username: req.body.username }, { $push: { favorites: req.body.favorites } }, (error, results) => {
-                        if (error) throw error
-                        else {
-                            return next();
+                    );
+                } else if (
+                    req.body.favorites.jobID !== result[0].favorites[i].jobID &&
+                    i === result[0].favorites.length - 1
+                ) {
+                    return User.updateOne(
+                        { username: req.body.username },
+                        { $push: { favorites: req.body.favorites } },
+                        (error, results) => {
+                            if (error) throw error;
+                            else {
+                                return next();
+                            }
                         }
-                    })
+                    );
                 }
             }
         } else {
-            User.updateOne({ username: req.body.username }, { $push: { favorites: req.body.favorites } }, (error, results) => {
-                if (error) throw error
-                else {
-                    return next();
+            User.updateOne(
+                { username: req.body.username },
+                { $push: { favorites: req.body.favorites } },
+                (error, results) => {
+                    if (error) throw error;
+                    else {
+                        return next();
+                    }
                 }
-            })
+            );
         }
-    })
-}
-
+    });
+};
 
 //gets favorites
 userController.getFavorites = (req, res, next) => {

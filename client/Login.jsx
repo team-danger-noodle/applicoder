@@ -25,7 +25,7 @@ const Login = () => {
   }
 
   return (
-    <>
+    <div id="landingPage" className="bg-dark">
       <Jumbotron id="OAuth">
         <Image src="https://image.flaticon.com/icons/svg/52/52903.svg" id="loginIcon"></Image>
         <p id="OAuthIntro">Welcome to...</p>
@@ -42,7 +42,7 @@ const Login = () => {
           </div>
         </div>
       </Jumbotron>
-    </>
+    </div>
   )
 }
 

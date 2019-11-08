@@ -5,9 +5,9 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const PORT = 3000;
-const authRouter = require("./Routes/Authentication")
-const tokenAccess = require("./tokenAccess")
-const cookies = require('./CookiesAndVerification/cookies')
+const authRouter = require('./Routes/Authentication');
+const tokenAccess = require('./tokenAccess');
+const cookies = require('./CookiesAndVerification/cookies');
 const mongoose = require('mongoose');
 const graphqlHTTP = require('express-graphql');
 const schema = require('./schema');
@@ -20,6 +20,7 @@ mongoose.connect(mongoURI, { useUnifiedTopology: true, useNewUrlParser: true });
 mongoose.set('useCreateIndex', true);
 
 let accessinfo = '';
+let linkedInAccessToken = '';
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -45,7 +46,7 @@ app.get("/linkedIn/callback", tokenAccess.linkedInRequestToken, cookies.createCo
 //userinformation endpoint
 app.get('/getUserInfo', (req, res) => {
   res.json(accessinfo);
-})
+});
 
 //get request to signup page
 app.get('/login', (req, res) => {
@@ -63,9 +64,14 @@ app.post('/allfavorites', userController.getFavorites, (req, res) => {
 });
 
 //add a favorite to user
-app.post('/favorites', userController.addFavorite, userController.getFavorites, (req, res) => {
-  res.status(200).send(JSON.stringify(res.locals.results));
-});
+app.post(
+  '/favorites',
+  userController.addFavorite,
+  userController.getFavorites,
+  (req, res) => {
+    res.status(200).send(JSON.stringify(res.locals.results));
+  }
+);
 
 // query api
 app.use(

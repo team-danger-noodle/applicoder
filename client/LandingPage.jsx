@@ -5,9 +5,6 @@ import Homepage from './Homepage.jsx';
 
 const LandingPage = () => {
   const [Store, setStore] = useContext(StoreContext);
-
-
-
   return (
     <div id="landingPage" className="bg-dark">
       <Homepage />
