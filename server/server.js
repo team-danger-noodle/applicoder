@@ -3,47 +3,81 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const PORT = 3000;
-const mongoose = require('mongoose')
+const authRouter = require("./Routes/Authentication")
+const tokenAccess = require("./tokenAccess")
+const cookies = require('./CookiesAndVerification/cookies')
+const mongoose = require('mongoose');
+const graphqlHTTP = require('express-graphql');
+const schema = require('./schema');
 
-const userController = require('../model/userController')
+const userController = require('../model/userController');
 
-const mongoURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@applicoder-y9btr.mongodb.net/test?retryWrites=true&w=majority`
+const mongoURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@applicoder-y9btr.mongodb.net/test?retryWrites=true&w=majority`;
 
 mongoose.connect(mongoURI, { useUnifiedTopology: true, useNewUrlParser: true });
 mongoose.set('useCreateIndex', true);
 
-app.use(bodyParser.json()); 
+let accessinfo = '';
+
+app.use(bodyParser.json());
+app.use(cookieParser());
 
 app.use('/build', express.static(path.join(__dirname, '../build')));
-
-// route to home page
-app.get('/', (req, res) => {
+app.get('/', cookies.checkCookies, (req, res) => {
   res.status(200).sendFile(path.join(__dirname, '../index.html'));
 });
+app.use('/auth', authRouter);
 
-//get request to signup page
-app.get('/signup', (req, res) => {
-  //RENDER SIGNUP HTML PAGE res.render('FILE PATH')
+//oauth callbacks
+app.get("/github/callback", tokenAccess.githubRequestToken, cookies.createCookies, userController.createUser, (req, res) => {
+  accessinfo = res.locals.login;
+  console.log(accessinfo)
+  res.redirect('/')
+});
+
+app.get("/linkedIn/callback", tokenAccess.linkedInRequestToken, cookies.createCookies, userController.createUser, (req, res) => {
+  accessinfo = res.locals.login;
+  res.redirect('/');
+});
+
+//userinformation endpoint
+app.get('/getUserInfo', (req, res) => {
+  res.json(accessinfo);
 })
 
-//signup user
-app.post('/signup', userController.createUser, (req, res) => {
+//get request to signup page
+app.get('/login', (req, res) => {
+  res.status(200).sendFile(path.join(__dirname, '../login.html'));
+});
+
+//login user
+app.post('/login', userController.createUser, (req, res) => {
   res.status(200).redirect('/');
 });
 
 //get favorites for user
-app.get('/favorites', userController.getFavorites, (req, res) => {
-  console.log(res.locals.results)
-  res.status(200).send(JSON.stringify(res.locals.results))
-})
+app.post('/allfavorites', userController.getFavorites, (req, res) => {
+  res.status(200).send(JSON.stringify(res.locals.results));
+});
 
 //add a favorite to user
-app.post('/favorites', userController.addFavorite, (req, res) => {
-  res.sendStatus(200);
-})
+app.post('/favorites', userController.addFavorite, userController.getFavorites, (req, res) => {
+  res.status(200).send(JSON.stringify(res.locals.results));
+});
+
+// query api
+app.use(
+  '/graphql',
+  graphqlHTTP({
+    schema,
+    graphiql: true
+  })
+);
 
 // global route handler
+
 app.use('*', (req, res) => {
   res.status(404).send('Route not found');
 });

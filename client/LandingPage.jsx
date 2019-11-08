@@ -6,13 +6,12 @@ import Homepage from './Homepage.jsx';
 const LandingPage = () => {
   const [Store, setStore] = useContext(StoreContext);
 
+
+
   return (
-    <>
-    {Store.verified ?
-    <Homepage/> : 
-    <Login/>
-    }
-    </>
+    <div id="landingPage" className="bg-dark">
+      <Homepage />
+    </div>
   )
 }
 
