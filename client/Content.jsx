@@ -42,11 +42,7 @@ const Content = () => {
             </Button>
           </Link>
           <Link to='/Favorites'>
-            <Button
-              variant='secondary'
-              onClick={() => {
-              }}
-            >
+            <Button variant='secondary' onClick={() => {}}>
               Favorites
             </Button>
           </Link>
@@ -65,9 +61,6 @@ const Content = () => {
               </Route>
               <Route path='/Favorites'>
                 <Favorites />
-              </Route>
-              <Route path='/Favorites'>
-                <Favorites></Favorites>
               </Route>
             </Switch>
           </div>

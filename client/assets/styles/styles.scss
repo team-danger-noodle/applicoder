@@ -6,6 +6,9 @@ body,
   height: 100%;
   width: 100%;
 }
+#landingPage {
+  position: absolute;
+}
 #homepage {
   position: fixed;
   display: flex;
@@ -199,4 +202,53 @@ p {
 }
 .searchRad {
   width: 98%;
+}
+
+// easter egg
+@function posOrNeg() {
+  @return random() * 2 - 1;
+}
+
+$total: 201;
+$size: 50;
+
+.particle {
+  position: absolute;
+  width: $size + px;
+  height: $size + px;
+  margin-top: -$size/2 + px;
+  margin-left: -$size/2 + px;
+  transform: translate3d(50vw, 50vh, -1000px);
+  border-radius: 50%;
+  position: absolute;
+  z-index: 1051;
+  background: #fff;
+  box-shadow: inset -5px -5px 5px rgba(0, 0, 0, 0.6),
+    15px 15px 2px rgba(0, 0, 0, 0.04);
+}
+
+@for $i from 1 through $total {
+  // $color: hsl(($i * 0.1)+70, 100%, 50%);
+
+  .particle:nth-child(#{$i}) {
+    animation: anim#{$i} 1.5s infinite alternate;
+    animation-delay: $i * -0.015s;
+    // background: $color;
+    // background: radial-gradient(
+    //   circle at top left,
+    //   lighten($color, 15%),
+    //   $color
+    // );
+    // box-shadow: 0 0 25px 3px lighten($color, 5%);
+    // border: 1px solid $color;
+  }
+  @keyframes anim#{$i} {
+    80% {
+      opacity: 1;
+    }
+    100% {
+      transform: translate3d(random(100) + vw, random(100) + vh, 0);
+      opacity: 0;
+    }
+  }
 }

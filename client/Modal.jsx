@@ -23,6 +23,22 @@ const CenteredModal = props => {
     setIcon(!bool);
   };
 
+  const easterEgg = () => {
+    const audio = new Audio(
+      'https://iringtone.net/rington/file?id=8454&type=sound&name=mp3'
+    );
+    audio.play();
+
+    const app = document.getElementById('app');
+    app.classList.add('easter-egg');
+
+    for (let i = 0; i <= 199; i += 1) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      app.appendChild(particle);
+    }
+  };
+
   return (
     <Modal
       {...props}
@@ -52,6 +68,7 @@ const CenteredModal = props => {
       </Modal.Body>
       <Modal.Footer>
         <p id='postDate'>Posted: {props.posted}</p>
+        <Button onClick={() => easterEgg()}>Apply</Button>
         <Button onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>

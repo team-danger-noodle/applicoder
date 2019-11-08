@@ -14,7 +14,7 @@ const schema = require('./schema');
 
 const userController = require('../model/userController');
 
-const mongoURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@applicoder-y9btr.mongodb.net/test?retryWrites=true&w=majority`;
+const mongoURI = `mongodb+srv://jan:jan@applicoder-y9btr.mongodb.net/test?retryWrites=true&w=majority`;
 
 mongoose.connect(mongoURI, { useUnifiedTopology: true, useNewUrlParser: true });
 mongoose.set('useCreateIndex', true);
@@ -32,16 +32,28 @@ app.get('/', cookies.checkCookies, (req, res) => {
 app.use('/auth', authRouter);
 
 //oauth callbacks
-app.get("/github/callback", tokenAccess.githubRequestToken, cookies.createCookies, userController.createUser, (req, res) => {
-  accessinfo = res.locals.login;
-  console.log(accessinfo)
-  res.redirect('/')
-});
+app.get(
+  '/github/callback',
+  tokenAccess.githubRequestToken,
+  cookies.createCookies,
+  userController.createUser,
+  (req, res) => {
+    accessinfo = res.locals.login;
+    console.log(accessinfo);
+    res.redirect('/');
+  }
+);
 
-app.get("/linkedIn/callback", tokenAccess.linkedInRequestToken, cookies.createCookies, userController.createUser, (req, res) => {
-  accessinfo = res.locals.login;
-  res.redirect('/');
-});
+app.get(
+  '/linkedIn/callback',
+  tokenAccess.linkedInRequestToken,
+  cookies.createCookies,
+  userController.createUser,
+  (req, res) => {
+    accessinfo = res.locals.login;
+    res.redirect('/');
+  }
+);
 
 //userinformation endpoint
 app.get('/getUserInfo', (req, res) => {
@@ -83,7 +95,6 @@ app.use(
 );
 
 // global route handler
-
 app.use('*', (req, res) => {
   res.status(404).send('Route not found');
 });
