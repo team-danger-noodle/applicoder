@@ -40,6 +40,13 @@ const GitHubJobs = () => {
       ></SearchResult>
     );
   });
+  if (!Store.gitHubUpdate) {
+    setStore({
+      ...Store,
+      gitHubJobs: searchResults,
+      gitHubUpdate: true
+    })
+  }
   return <div id='resultHolder'>{searchResults}</div>;
 };
 
