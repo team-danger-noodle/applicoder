@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { StoreContext } from './Store.jsx';
 import parse from 'html-react-parser';
-import { IoIosStarOutline, IoIosStar } from 'react-icons/io'
+import { IoIosStarOutline, IoIosStar } from 'react-icons/io';
 
 const CenteredModal = props => {
   const [Store, setStore] = useContext(StoreContext);
@@ -10,18 +10,18 @@ const CenteredModal = props => {
 
   const addFav = (id, page) => {
     const job_ID = id;
-    const pageLike = page
+    const pageLike = page;
     setStore({
       ...Store,
       job_ID,
       pageLike
-    })
-    console.log(Store)
-  }
+    });
+    console.log(Store);
+  };
   const changeIcon = () => {
-    const bool = icon
+    const bool = icon;
     setIcon(!bool);
-  }
+  };
 
   return (
     <Modal
@@ -34,13 +34,15 @@ const CenteredModal = props => {
         <Modal.Title id='contained-modal-title-vcenter'>
           {props.title}
         </Modal.Title>
-        <Button onClick={()=> {
-          addFav(props.id, props.page) 
-          changeIcon()
-        }}
+        <Button
+          onClick={() => {
+            addFav(props.id, props.page);
+            changeIcon();
+          }}
           variant='none'
-          id="favoriteButton">
-            { icon ? <IoIosStarOutline id="star"/> : <IoIosStar id="star"/>}
+          id='favoriteButton'
+        >
+          {icon ? <IoIosStarOutline id='star' /> : <IoIosStar id='star' />}
         </Button>
       </Modal.Header>
       <Modal.Body>

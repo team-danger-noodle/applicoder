@@ -59,7 +59,8 @@ export const StoreContextProvider = props => {
         jobTitle: 'Ping Pong Coordinator',
         company: 'Codesmith',
         location: 'Venice, CA',
-        snippet: `The ping pong coordinator is the person who plans and executes ping pong events, taking responsibility for the creative, technical, and logistical elements. This includes overall event ranking, design, brand building, marketing and communication strategy, audio-visual production, script writing, logistics, budgeting, negotiation, and client service.`,
+        snippet: `<p>The ping pong coordinator is the person who plans and executes ping pong events, taking responsibility for the creative, technical, and logistical elements. This includes overall event ranking, design, brand building, marketing and communication strategy, audio-visual production, script writing, logistics, budgeting, negotiation, and client service.<p>
+        `,
         postDate: '1 Day ago',
         jobID: '3',
         url: 'https://www.codesmith.io/'
