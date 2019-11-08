@@ -16,7 +16,7 @@ const Codesmith = () => {
         id={result.jobID}
         url={result.url}
         page={'Codesmith'}
-        key={ind}
+        key={result.jobID}
       ></SearchResult>
     );
   });
