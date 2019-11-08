@@ -4,14 +4,14 @@ import AuthenticJobs from './AuthenticJobs.jsx';
 import Codesmith from './Codesmith.jsx';
 import Favorites from './Favorites.jsx';
 import { Button } from 'react-bootstrap';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { MemoryRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 const Content = () => {
   return (
     <Router>
       <div id='content' className='bg-dark'>
         <div id='routeHolder'>
-          <Link to='/GitHub'>
+          <Link to='/'>
             <Button
               variant='secondary'
               onClick={() => {
@@ -55,7 +55,7 @@ const Content = () => {
         <div id='searchResults'>
           <div id='results' bg='dark'>
             <Switch>
-              <Route exact path='/GitHub'>
+              <Route exact path='/'>
                 <GitHub />
               </Route>
               <Route path='/AuthenticJobs'>

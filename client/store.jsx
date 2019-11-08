@@ -11,35 +11,61 @@ export const StoreContextProvider = props => {
     authenticJobs: [],
     codesmithRes: [
       {
-        jobTitle: 'Full Stack Engineer',
-        company: 'Tradelogic Corporation',
-        location: 'Austin, TX',
-        snippet:
-          'a <b>Java</b> Developer to join our team. This position will be responsible for design and development of <b>Java</b>... <b>Java</b> or C# Frameworks/Skills: <b>Java</b> EE, <b>Java</b> Swing or... ',
+        jobTitle: "Schno's Squire",
+        company: 'Codesmith',
+        location: 'Venice, CA',
+        snippet: `
+          <ul>
+            <li>Carrying Schno's armour, shield and sword</li>
+            <li>Guarding prisoners</li>
+            <li>Ensuring an honourable burial for Schno</li>
+            <li>Replacing an injured or killed horse</li>
+            <li>Dressing Schno in armour</li>
+            <li>Carrying Schno's flag</li>
+            <li>Protecting Schno</li>
+            <li>Taking care of the horses</li>
+            <li>Accompanying Schno to tournaments and the battlefield</li>
+            <li>Maintaining Schno's equipment</li>
+            <li>Scrubbing armour</li>
+          </ul>
+          `,
         postDate: '1 Day ago',
-        jobID: '83400e947276d20b',
-        url:
-          'http://www.indeed.com/viewjob?jk=83400e947276d20b&qd=VurSLpjL_C5x-OsC8F-9NGcYiUmqnprrq2MtIyXogmRpzcw_E7jGkHBk-CGbv6Dm_Xi5BXyNYBQGtr4UYaav2xGUWcVBinyLZAVK0SVVur0&indpubnum=1757981803167718&atk=1806r4s2v0mph2o9'
+        jobID: '1',
+        url: 'https://www.codesmith.io/'
       },
       {
-        jobTitle: 'Full Stack Engineer',
-        company: 'Google Corp.',
-        location: 'Los Angeles, CA',
-        snippet: `a <b>Java</b> Developer to join our team. This position will be responsible for design and development of <b>Java</b>... <b>Java</b> or C# Frameworks/Skills: <b>Java</b> EE, <b>Java</b> Swing or... `,
+        jobTitle: 'Dry Erase Marker Checker - QA',
+        company: 'Codesmith',
+        location: 'Venice, CA',
+        snippet: `
+          <ul>
+            <li>Lead a team of QA engineers.</li>
+            <li>Work with software developers and design team to understand product design and interfaces.</li>
+            <li>Work with product teams to understand release requirements and priorities</li>
+            <li>Ensure application reliability</li>
+            <li>Define testing strategies and standards</li>
+            <li>Create manual and automated testing scripts</li>
+            <li>Write test cases, plans, and scenarios to validate user story acceptance criteria</li>
+            <li>Continuous improvement of processes</li>
+            <li>Mentor QA colleagues (both stateside and overseas)</li>
+            <li>Integrate QA to deployment processes</li>
+            <li>Document QA processes</li>
+            <li>Report progress, plans, and problems to the leadership team on a scheduled basis</li>
+          </ul>
+        `,
         postDate: '1 Day ago',
-        jobID: '83400e947276d20c',
-        url:
-          'http://www.indeed.com/viewjob?jk=83400e947276d20b&qd=VurSLpjL_C5x-OsC8F-9NGcYiUmqnprrq2MtIyXogmRpzcw_E7jGkHBk-CGbv6Dm_Xi5BXyNYBQGtr4UYaav2xGUWcVBinyLZAVK0SVVur0&indpubnum=1757981803167718&atk=1806r4s2v0mph2o9'
+        jobID: '2',
+        url: 'https://www.codesmith.io/'
       },
       {
-        jobTitle: 'Front-End Engineer',
-        company: 'Netflix',
-        location: 'Los Angeles, CA',
-        snippet: `a <b>Java</b> Developer to join our team. This position will be responsible for design and development of <b>Java</b>... <b>Java</b> or C# Frameworks/Skills: <b>Java</b> EE, <b>Java</b> Swing or... `,
+        jobTitle: 'Ping Pong Coordinator',
+        company: 'Codesmith',
+        location: 'Venice, CA',
+        snippet: `<p>The ping pong coordinator is the person who plans and executes ping pong events, taking responsibility for the creative, technical, and logistical elements. This includes overall event ranking, design, brand building, marketing and communication strategy, audio-visual production, script writing, logistics, budgeting, negotiation, and client service.<p>
+        `,
         postDate: '1 Day ago',
-        jobID: '83400e947276d20d',
-        url:
-          'http://www.indeed.com/viewjob?jk=83400e947276d20b&qd=VurSLpjL_C5x-OsC8F-9NGcYiUmqnprrq2MtIyXogmRpzcw_E7jGkHBk-CGbv6Dm_Xi5BXyNYBQGtr4UYaav2xGUWcVBinyLZAVK0SVVur0&indpubnum=1757981803167718&atk=1806r4s2v0mph2o9'
+        jobID: '3',
+        url: 'https://www.codesmith.io/'
       }
     ],
     keywordSearch: '',

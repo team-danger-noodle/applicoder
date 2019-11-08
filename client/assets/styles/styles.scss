@@ -47,9 +47,8 @@ body,
 #resultHolder {
   display: flex;
   flex-direction: column;
-
 }
-#jobListing{
+#jobListing {
   display: flex;
   justify-content: space-evenly;
   width: 97%;
@@ -57,7 +56,7 @@ body,
   margin: 5px auto;
   border-radius: 8px;
 }
-.listingDeets{
+.listingDeets {
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -66,17 +65,20 @@ body,
   // background-color: darksalmon;
   margin: 10px 10px;
 }
-#listingDeets, h3, p {
+#listingDeets,
+h3,
+p {
   margin-left: 15px;
 }
 #compAndLoc {
   // width: 75%;
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
   justify-content: space-between;
 }
 
-#logout, #navbarLogo  {
+#logout,
+#navbarLogo {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -84,7 +86,7 @@ body,
   margin-left: 40px;
   margin-right: 40px;
 }
-#title{
+#title {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -126,7 +128,7 @@ body,
   padding: 0;
   align-items: center;
 }
-#star{
+#star {
   width: 40px;
   height: 40px;
   align-self: center;
@@ -149,7 +151,7 @@ body,
   text-align: left;
 }
 #submit {
-  width: 80%
+  width: 80%;
 }
 .login {
   width: 49.99%;
