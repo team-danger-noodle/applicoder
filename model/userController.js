@@ -61,9 +61,11 @@ userController.addFavorite = (req, res, next) => {
 
 //gets favorites
 userController.getFavorites = (req, res, next) => {
+    // console.log('hi', req.body)
     User.find({ username: req.body.username }, (error, results) => {
         if (error) throw error
         else {
+            console.log(results[0].favorites)
             res.locals.results = results[0].favorites;
             return next();
         }

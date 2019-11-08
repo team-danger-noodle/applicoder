@@ -2,7 +2,7 @@ import React from 'react';
 import USAJobs from './USAJobs.jsx';
 import Indeed from './Indeed.jsx';
 import GitHub from './GitHub.jsx';
-import GlassDoor from './GlassDoor.jsx';
+import Favorites from './Favorites.jsx';
 import { Button } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
@@ -45,7 +45,6 @@ const Content = () => {
             <Button
               variant='secondary'
               onClick={() => {
-                console.log('GlassDoor');
               }}
             >
               Favorites
@@ -63,6 +62,9 @@ const Content = () => {
               </Route>
               <Route path='/GitHub'>
                 <GitHub />
+              </Route>
+              <Route path='/Favorites'>
+                <Favorites></Favorites>
               </Route>
             </Switch>
           </div>
