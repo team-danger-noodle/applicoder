@@ -46,8 +46,11 @@ const Homepage = () => {
     //     fetched: true
     //   })
     // }
-
-  }, [Store.fetched])
+    fetch('/getUserInfo')
+      .then(response => response.json())
+      .then(data => setStore({ ...Store, user: data }))
+      .catch(console.error)
+  }, [])
 
   useEffect(() => {
     if (Store.keywordSearch || Store.locationSearch || Store.radius) {

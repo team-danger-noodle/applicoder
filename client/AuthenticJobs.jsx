@@ -56,7 +56,13 @@ const AuthenticJobs = () => {
       ></SearchResult>
     );
   });
-
+  if (!Store.authenticJobsUpdate) {
+    setStore({
+      ...Store,
+      authenticJobs: searchResults,
+      authenticJobsUpdate: true
+    })
+  }
   return <div id='resultHolder'>{searchResults}</div>;
 };
 

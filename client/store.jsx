@@ -7,6 +7,8 @@ export const StoreContextProvider = props => {
     user: '',
     verified: true, //will need to set to false when launching
     userFavs: [],
+    gitHubJobs: [],
+    authenticJobs: [],
     codesmithRes: [
       {
         jobTitle: "Schno's Squire",
@@ -71,7 +73,10 @@ export const StoreContextProvider = props => {
     radius: '',
     job_ID: null,
     pageLike: null,
-    fetched: true //will need to set to false upon launching to fetch upon initial load
+    fetched: false,
+    gitHubUpdate: false,
+    authenticJobsUpdate: false,
+    codesmithUpdate: false //will need to set to false upon launching to fetch upon initial load
   });
 
   return (
