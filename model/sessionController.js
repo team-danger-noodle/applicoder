@@ -1,3 +1,3 @@
-const Session = require('./sessionModel');
+const Session = require("./sessionModel");
 
 const sessionController = {};

@@ -1,56 +1,56 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext } from "react";
 
 export const StoreContext = createContext(null);
 
-export const StoreContextProvider = props => {
+export const StoreContextProvider = (props) => {
   const [Store, setStore] = useState({
-    user: '',
+    user: "",
     verified: true, //will need to set to false when launching
     userFavs: [],
     gitHubJobs: [],
     authenticJobs: [],
     codesmithRes: [
       {
-        jobTitle: 'Full Stack Engineer',
-        company: 'Tradelogic Corporation',
-        location: 'Austin, TX',
+        jobTitle: "Full Stack Engineer",
+        company: "Tradelogic Corporation",
+        location: "Austin, TX",
         snippet:
-          'a <b>Java</b> Developer to join our team. This position will be responsible for design and development of <b>Java</b>... <b>Java</b> or C# Frameworks/Skills: <b>Java</b> EE, <b>Java</b> Swing or... ',
-        postDate: '1 Day ago',
-        jobID: '83400e947276d20b',
+          "a <b>Java</b> Developer to join our team. This position will be responsible for design and development of <b>Java</b>... <b>Java</b> or C# Frameworks/Skills: <b>Java</b> EE, <b>Java</b> Swing or... ",
+        postDate: "1 Day ago",
+        jobID: "83400e947276d20b",
         url:
-          'http://www.indeed.com/viewjob?jk=83400e947276d20b&qd=VurSLpjL_C5x-OsC8F-9NGcYiUmqnprrq2MtIyXogmRpzcw_E7jGkHBk-CGbv6Dm_Xi5BXyNYBQGtr4UYaav2xGUWcVBinyLZAVK0SVVur0&indpubnum=1757981803167718&atk=1806r4s2v0mph2o9'
+          "http://www.indeed.com/viewjob?jk=83400e947276d20b&qd=VurSLpjL_C5x-OsC8F-9NGcYiUmqnprrq2MtIyXogmRpzcw_E7jGkHBk-CGbv6Dm_Xi5BXyNYBQGtr4UYaav2xGUWcVBinyLZAVK0SVVur0&indpubnum=1757981803167718&atk=1806r4s2v0mph2o9",
       },
       {
-        jobTitle: 'Full Stack Engineer',
-        company: 'Google Corp.',
-        location: 'Los Angeles, CA',
+        jobTitle: "Full Stack Engineer",
+        company: "Google Corp.",
+        location: "Los Angeles, CA",
         snippet: `a <b>Java</b> Developer to join our team. This position will be responsible for design and development of <b>Java</b>... <b>Java</b> or C# Frameworks/Skills: <b>Java</b> EE, <b>Java</b> Swing or... `,
-        postDate: '1 Day ago',
-        jobID: '83400e947276d20c',
+        postDate: "1 Day ago",
+        jobID: "83400e947276d20c",
         url:
-          'http://www.indeed.com/viewjob?jk=83400e947276d20b&qd=VurSLpjL_C5x-OsC8F-9NGcYiUmqnprrq2MtIyXogmRpzcw_E7jGkHBk-CGbv6Dm_Xi5BXyNYBQGtr4UYaav2xGUWcVBinyLZAVK0SVVur0&indpubnum=1757981803167718&atk=1806r4s2v0mph2o9'
+          "http://www.indeed.com/viewjob?jk=83400e947276d20b&qd=VurSLpjL_C5x-OsC8F-9NGcYiUmqnprrq2MtIyXogmRpzcw_E7jGkHBk-CGbv6Dm_Xi5BXyNYBQGtr4UYaav2xGUWcVBinyLZAVK0SVVur0&indpubnum=1757981803167718&atk=1806r4s2v0mph2o9",
       },
       {
-        jobTitle: 'Front-End Engineer',
-        company: 'Netflix',
-        location: 'Los Angeles, CA',
+        jobTitle: "Front-End Engineer",
+        company: "Netflix",
+        location: "Los Angeles, CA",
         snippet: `a <b>Java</b> Developer to join our team. This position will be responsible for design and development of <b>Java</b>... <b>Java</b> or C# Frameworks/Skills: <b>Java</b> EE, <b>Java</b> Swing or... `,
-        postDate: '1 Day ago',
-        jobID: '83400e947276d20d',
+        postDate: "1 Day ago",
+        jobID: "83400e947276d20d",
         url:
-          'http://www.indeed.com/viewjob?jk=83400e947276d20b&qd=VurSLpjL_C5x-OsC8F-9NGcYiUmqnprrq2MtIyXogmRpzcw_E7jGkHBk-CGbv6Dm_Xi5BXyNYBQGtr4UYaav2xGUWcVBinyLZAVK0SVVur0&indpubnum=1757981803167718&atk=1806r4s2v0mph2o9'
-      }
+          "http://www.indeed.com/viewjob?jk=83400e947276d20b&qd=VurSLpjL_C5x-OsC8F-9NGcYiUmqnprrq2MtIyXogmRpzcw_E7jGkHBk-CGbv6Dm_Xi5BXyNYBQGtr4UYaav2xGUWcVBinyLZAVK0SVVur0&indpubnum=1757981803167718&atk=1806r4s2v0mph2o9",
+      },
     ],
-    keywordSearch: '',
-    locationSearch: '',
-    radius: '',
+    keywordSearch: "",
+    locationSearch: "",
+    radius: "",
     job_ID: null,
     pageLike: null,
     fetched: false,
     gitHubUpdate: false,
     authenticJobsUpdate: false,
-    codesmithUpdate: false //will need to set to false upon launching to fetch upon initial load
+    codesmithUpdate: false, //will need to set to false upon launching to fetch upon initial load
   });
 
   return (

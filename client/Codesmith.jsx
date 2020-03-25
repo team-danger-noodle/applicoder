@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
-import { StoreContext } from './Store.jsx';
-import SearchResult from './SearchResult.jsx';
+import React, { useContext } from "react";
+import { StoreContext } from "./Store.jsx";
+import SearchResult from "./SearchResult.jsx";
 
 const Codesmith = () => {
   const [Store, setStore] = useContext(StoreContext);
@@ -15,13 +15,13 @@ const Codesmith = () => {
         posted={result.postDate}
         id={result.jobID}
         url={result.url}
-        page={'Codesmith'}
+        page={"Codesmith"}
         key={result.jobID}
       ></SearchResult>
     );
   });
 
-  return <div id='resultHolder'>{searchResults}</div>;
+  return <div id="resultHolder">{searchResults}</div>;
 };
 
 export default Codesmith;

@@ -4,13 +4,14 @@ const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const PORT = 3000;
 const authRouter = require('./Routes/Authentication');
 const tokenAccess = require('./tokenAccess');
 const cookies = require('./CookiesAndVerification/cookies');
 const mongoose = require('mongoose');
 const graphqlHTTP = require('express-graphql');
 const schema = require('./schema');
+
+const PORT = 3000;
 
 const userController = require('../model/userController');
 
@@ -34,9 +35,12 @@ app.use('/auth', authRouter);
 //oauth callbacks
 app.get("/github/callback", tokenAccess.githubRequestToken, cookies.createCookies, userController.createUser, (req, res) => {
   accessinfo = res.locals.login;
-  console.log(accessinfo)
   res.redirect('/')
 });
+
+app.get('/cookieCheck', cookies.checkCookies, (req, res) => {
+  res.status(200).send(res.locals.verified);
+})
 
 app.get("/linkedIn/callback", tokenAccess.linkedInRequestToken, cookies.createCookies, userController.createUser, (req, res) => {
   accessinfo = res.locals.login;
@@ -83,11 +87,8 @@ app.use(
 );
 
 // global route handler
-
 app.use('*', (req, res) => {
   res.status(404).send('Route not found');
 });
 
-app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
-});
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

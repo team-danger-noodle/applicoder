@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
-import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
-import { StoreContext } from './Store.jsx';
-import SearchResult from './SearchResult.jsx';
+import React, { useContext } from "react";
+import gql from "graphql-tag";
+import { useQuery } from "@apollo/react-hooks";
+import { StoreContext } from "./Store.jsx";
+import SearchResult from "./SearchResult.jsx";
 
 const GITHUB_JOBS_QUERY = gql`
   query GitHubJobsQuery {
@@ -23,9 +23,9 @@ const GitHubJobs = () => {
   const { loading, error, data } = useQuery(GITHUB_JOBS_QUERY);
 
   if (loading) return <h4>Loading...</h4>;
-  if (error) console.log(error);
+  if (error) console.error(error);
 
-  const searchResults = data.gitHubJobs.map(result => {
+  const searchResults = data.gitHubJobs.map((result) => {
     return (
       <SearchResult
         title={result.title}
@@ -35,7 +35,7 @@ const GitHubJobs = () => {
         posted={result.created_at}
         id={result.id}
         url={result.company_url}
-        page={'GitHub'}
+        page={"GitHub"}
         key={result.id}
       ></SearchResult>
     );
@@ -44,10 +44,10 @@ const GitHubJobs = () => {
     setStore({
       ...Store,
       gitHubJobs: searchResults,
-      gitHubUpdate: true
-    })
+      gitHubUpdate: true,
+    });
   }
-  return <div id='resultHolder'>{searchResults}</div>;
+  return <div id="resultHolder">{searchResults}</div>;
 };
 
 export default GitHubJobs;

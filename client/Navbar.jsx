@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
-import { StoreContext } from './Store.jsx';
-import { Navbar, Button } from 'react-bootstrap';
+import React, { useContext } from "react";
+import { StoreContext } from "./Store.jsx";
+import { Navbar, Button } from "react-bootstrap";
 
 const Navigation = () => {
   const [Store, setStore] = useContext(StoreContext);
@@ -8,10 +8,10 @@ const Navigation = () => {
   const logout = () => {
     return setStore({
       ...Store,
-      user: '',
+      user: "",
       verified: false,
-    })
-  }
+    });
+  };
 
   return (
     <Navbar bg="dark" variant="dark" fixed="top" id="navbar">
@@ -26,11 +26,12 @@ const Navigation = () => {
       </Navbar.Brand>
       <Navbar.Brand id="title"> AppliCoder . . .</Navbar.Brand>
       <Navbar.Brand id="logout">
-        <Button variant="outline-info" onClick={logout} className="logout">Logout</Button>
+        <Button variant="outline-info" onClick={logout} className="logout">
+          Logout
+        </Button>
       </Navbar.Brand>
     </Navbar>
-  )
-
-}
+  );
+};
 
 export default Navigation;

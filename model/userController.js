@@ -1,27 +1,26 @@
-const User = require('./userModel');
+const User = require("./userModel");
 
 const userController = {};
 
-userController.getAllUsers = next => {
+userController.getAllUsers = (next) => {
   User.find({}, next);
 };
 
 //creates user
 userController.createUser = (req, res, next) => {
-    console.log(res.locals.login)
-    User.find({ username: res.locals.login }, (error, result) => {
-        if (error) throw error;
-        if (!result[0]) {
-            User.create({ username: res.locals.login }, (error, user) => {
-                if (error) {
-                    res.redirect('/login', { error });
-                } else {
-                    return next();
-                }
-            });
+  User.find({ username: res.locals.login }, (error, result) => {
+    if (error) throw error;
+    if (!result[0]) {
+      User.create({ username: res.locals.login }, (error, user) => {
+        if (error) {
+          res.redirect("/login", { error });
+        } else {
+          return next();
         }
-    })
-    return next();
+      });
+    }
+  });
+  return next();
 };
 
 //adds favorite

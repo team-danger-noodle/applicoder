@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
-import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
-import { StoreContext } from './Store.jsx';
-import SearchResult from './SearchResult.jsx';
+import React, { useContext } from "react";
+import gql from "graphql-tag";
+import { useQuery } from "@apollo/react-hooks";
+import { StoreContext } from "./Store.jsx";
+import SearchResult from "./SearchResult.jsx";
 
 const AUTHENTIC_JOBS_QUERY = gql`
   query AuthenticJobsQuery {
@@ -35,12 +35,12 @@ const AuthenticJobs = () => {
   const { loading, error, data } = useQuery(AUTHENTIC_JOBS_QUERY);
 
   if (loading) return <h4>Loading...</h4>;
-  if (error) console.log(error);
+  if (error) console.error(error);
 
-  const searchResults = data.authenticJobs.listings.listing.map(result => {
+  const searchResults = data.authenticJobs.listings.listing.map((result) => {
     result.company.location = result.company.location
       ? result.company.location
-      : { name: 'N/A' };
+      : { name: "N/A" };
 
     return (
       <SearchResult
@@ -51,7 +51,7 @@ const AuthenticJobs = () => {
         posted={result.post_date}
         id={result.id}
         url={result.url}
-        page={'AuthenticJobs'}
+        page={"AuthenticJobs"}
         key={result.id}
       ></SearchResult>
     );
@@ -60,10 +60,10 @@ const AuthenticJobs = () => {
     setStore({
       ...Store,
       authenticJobs: searchResults,
-      authenticJobsUpdate: true
-    })
+      authenticJobsUpdate: true,
+    });
   }
-  return <div id='resultHolder'>{searchResults}</div>;
+  return <div id="resultHolder">{searchResults}</div>;
 };
 
 export default AuthenticJobs;

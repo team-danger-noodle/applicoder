@@ -31,7 +31,6 @@ tokenObj.githubRequestToken = (req, res, next) => {
   }
 };
 tokenObj.linkedInRequestToken = (req, res, next) => {
-  console.log(req.query.code);
   axios({
     method: 'post',
     url: `https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code=${req.query.code}&redirect_uri=http://127.0.0.1:3000/linkedIn/callback&client_id=${linkedIn.clientID}&client_secret=${linkedIn.clientSecret}`,
@@ -41,14 +40,12 @@ tokenObj.linkedInRequestToken = (req, res, next) => {
     // Set the content type header, so that we get the response in JSOn
   })
     .then(response => {
-      console.log(response.data.access_token);
       accessToken = response.data.access_token;
       axios(
         'https://api.linkedin.com/v2/clientAwareMemberHandles?q=members&projection=(elements*(primary,type,handle~))',
         { headers: { Authorization: 'Bearer ' + accessToken } }
       )
         .then(response => {
-          console.log(response.data.elements[0]['handle~'].emailAddress);
           email = response.data.elements[0]['handle~'].emailAddress;
           res.locals.login = email;
           res.locals.accessToken = accessToken;
