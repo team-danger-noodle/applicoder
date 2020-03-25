@@ -23,7 +23,76 @@ const GitHubJobType = new GraphQLObjectType({
   })
 });
 
-// root query
+// authentic job type
+const AuthenticJobType = new GraphQLObjectType({
+  name: 'AuthenticJob',
+  fields: () => ({
+    listings: {
+      type: AuthenticJobListType
+    }
+  })
+});
+
+// authentic job list type
+const AuthenticJobListType = new GraphQLObjectType({
+  name: 'AuthenticJobList',
+  fields: () => ({
+    listing: { type: new GraphQLList(AuthenticJobListingType) }
+  })
+});
+
+// authentic job listing type
+const AuthenticJobListingType = new GraphQLObjectType({
+  name: 'AuthenticJobListing',
+  fields: () => ({
+    id: { type: GraphQLString },
+    title: { type: GraphQLString },
+    description: { type: GraphQLString },
+    howto_apply: { type: GraphQLString },
+    post_date: { type: GraphQLString },
+    category: { type: AuthenticJobListingCategoryType },
+    type: { type: AuthenticJobListingTypeType },
+    company: { type: AuthenticJobListingCompanyType },
+    apply_url: { type: GraphQLString },
+    url: { type: GraphQLString }
+  })
+});
+
+// authentic job listing category type
+const AuthenticJobListingCategoryType = new GraphQLObjectType({
+  name: 'AuthenticJobListingCategory',
+  fields: () => ({
+    name: { type: GraphQLString }
+  })
+});
+
+// authentic job listing type type
+const AuthenticJobListingTypeType = new GraphQLObjectType({
+  name: 'AuthenticJobListingType',
+  fields: () => ({
+    name: { type: GraphQLString }
+  })
+});
+
+// authentic job listing company type
+const AuthenticJobListingCompanyType = new GraphQLObjectType({
+  name: 'AuthenticJobListingCompany',
+  fields: () => ({
+    name: { type: GraphQLString },
+    url: { type: GraphQLString },
+    location: { type: AuthenticJobListingCompanyLocationType }
+  })
+});
+
+// authentic job listing company location type
+const AuthenticJobListingCompanyLocationType = new GraphQLObjectType({
+  name: 'AuthenticJobListingCompanyLocation',
+  fields: () => ({
+    name: { type: GraphQLString }
+  })
+});
+
+// root query type
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
@@ -37,14 +106,13 @@ const RootQuery = new GraphQLObjectType({
           .then(res => res.data);
       }
     },
-    gitHubJob: {
-      type: GitHubJobType,
-      args: {
-        id: { type: GraphQLString }
-      },
+    authenticJobs: {
+      type: AuthenticJobType,
       resolve(parent, args) {
         return axios
-          .get(`https://jobs.github.com/positions/${args.id}.json`)
+          .get(
+            'https://authenticjobs.com/api/?api_key=eff30b30aac066b2ea5d6d6f1a07a19f&format=json&method=aj.jobs.search'
+          )
           .then(res => res.data);
       }
     }

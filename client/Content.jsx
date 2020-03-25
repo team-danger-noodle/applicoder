@@ -1,71 +1,71 @@
-import React from 'react';
-import LinkedIn from './LinkedIn.jsx';
-import Indeed from './Indeed.jsx';
-import GitHub from './GitHub.jsx';
-import GlassDoor from './GlassDoor.jsx';
-import { Button } from 'react-bootstrap';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import React from "react";
+import GitHub from "./GitHub.jsx";
+import AuthenticJobs from "./AuthenticJobs.jsx";
+import Codesmith from "./Codesmith.jsx";
+import Favorites from "./Favorites.jsx";
+import { Button } from "react-bootstrap";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 const Content = () => {
   return (
     <Router>
-      <div id='content' className='bg-dark'>
-        <div id='routeHolder'>
-          <Link to='/LinkedIn'>
+      <div id="content" className="bg-dark">
+        <div id="routeHolder">
+          <Link to="/GitHub">
             <Button
-              variant='secondary'
+              variant="secondary"
               onClick={() => {
-                console.log('LinkedIn');
-              }}
-            >
-              LinkedIn
-            </Button>
-          </Link>
-          <Link to='/Indeed'>
-            <Button
-              variant='secondary'
-              onClick={() => {
-                console.log('Indeed');
-              }}
-            >
-              Indeed
-            </Button>
-          </Link>
-          <Link to='/GitHub'>
-            <Button
-              variant='secondary'
-              onClick={() => {
-                console.log('GitHub');
+                console.log("GitHub");
               }}
             >
               GitHub
             </Button>
           </Link>
-          <Link to='/GlassDoor'>
+          <Link to="/AuthenticJobs">
             <Button
-              variant='secondary'
+              variant="secondary"
               onClick={() => {
-                console.log('GlassDoor');
+                console.log("Authentic Jobs");
               }}
             >
-              GlassDoor
+              Authentic Jobs
+            </Button>
+          </Link>
+          <Link to="/Codesmith">
+            <Button
+              variant="secondary"
+              onClick={() => {
+                console.log("Codesmith");
+              }}
+            >
+              Codesmith
+            </Button>
+          </Link>
+          <Link to="/Favorites">
+            <Button
+              variant="secondary"
+              onClick={() => {
+                console.log("Favorites");
+              }}
+            >
+              Favorites
             </Button>
           </Link>
         </div>
-        <div id='searchResults'>
-          <div id='results' bg='dark'>
+        <div id="searchResults">
+          <div id="results" bg="dark">
             <Switch>
-              <Route exact path='/LinkedIn'>
-                <LinkedIn />
-              </Route>
-              <Route path='/Indeed'>
-                <Indeed />
-              </Route>
-              <Route path='/GitHub'>
+              <Route exact path="/GitHub">
                 <GitHub />
               </Route>
-              <Route path='/GlassDoor'>
-                <GlassDoor />
+              <Route path="/AuthenticJobs">
+                <AuthenticJobs />
+              </Route>
+              <Route path="/Codesmith">
+                <Codesmith />
+              </Route>
+              <Route path="/Favorites">
+                <Favorites />
               </Route>
             </Switch>
           </div>
