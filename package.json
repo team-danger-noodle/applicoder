@@ -47,7 +47,7 @@
     "babel-loader": "^8.0.6",
     "cookie-parser": "^1.4.4",
     "css-loader": "^3.2.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.7",
     "nodemon": "^1.19.4",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
